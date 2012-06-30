@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */; };
+		E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E2159DFEC900B3B429 /* WrapController.m */; };
+		E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E6159DFEFC00B3B429 /* MapViewController.m */; };
+		E286C3E9159DFEFC00B3B429 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E286C3E7159DFEFC00B3B429 /* MapViewController.xib */; };
+		E286C3F0159DFF2A00B3B429 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3EE159DFF2A00B3B429 /* ListViewController.m */; };
+		E286C3F1159DFF2A00B3B429 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E286C3EF159DFF2A00B3B429 /* ListViewController.xib */; };
+		E286C3F6159E005100B3B429 /* PadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3F4159E005100B3B429 /* PadViewController.m */; };
+		E286C3F7159E005100B3B429 /* PadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E286C3F5159E005100B3B429 /* PadViewController.xib */; };
+		E286C3F9159E033800B3B429 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E286C3F8159E033800B3B429 /* CoreLocation.framework */; };
+		E286C3FB159E040900B3B429 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E286C3FA159E040900B3B429 /* MapKit.framework */; };
+		E286C3FF159E0A9600B3B429 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3FE159E0A9600B3B429 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E286C403159E0ED900B3B429 /* BoxLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C402159E0ED900B3B429 /* BoxLocator.m */; };
+		E286C407159E4D6C00B3B429 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C406159E4D6C00B3B429 /* UIColor+Hex.m */; };
+		E2DCFD94159D02F1001098E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD93159D02F1001098E4 /* UIKit.framework */; };
+		E2DCFD96159D02F1001098E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD95159D02F1001098E4 /* Foundation.framework */; };
+		E2DCFD98159D02F1001098E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD97159D02F1001098E4 /* CoreGraphics.framework */; };
+		E2DCFD9E159D02F1001098E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DCFD9C159D02F1001098E4 /* InfoPlist.strings */; };
+		E2DCFDA0159D02F1001098E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DCFD9F159D02F1001098E4 /* main.m */; };
+		E2DCFDA4159D02F1001098E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DCFDA3159D02F1001098E4 /* AppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		E286C3E1159DFEC900B3B429 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
+		E286C3E2159DFEC900B3B429 /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrapController.m; sourceTree = "<group>"; };
+		E286C3E5159DFEFC00B3B429 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = Boxlox/MapViewController.h; sourceTree = SOURCE_ROOT; };
+		E286C3E6159DFEFC00B3B429 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = Boxlox/MapViewController.m; sourceTree = SOURCE_ROOT; };
+		E286C3E7159DFEFC00B3B429 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController.xib; path = Boxlox/MapViewController.xib; sourceTree = SOURCE_ROOT; };
+		E286C3ED159DFF2A00B3B429 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		E286C3EE159DFF2A00B3B429 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		E286C3EF159DFF2A00B3B429 /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		E286C3F2159DFF5F00B3B429 /* CommonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
+		E286C3F3159E005100B3B429 /* PadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PadViewController.h; sourceTree = "<group>"; };
+		E286C3F4159E005100B3B429 /* PadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadViewController.m; sourceTree = "<group>"; };
+		E286C3F5159E005100B3B429 /* PadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PadViewController.xib; sourceTree = "<group>"; };
+		E286C3F8159E033800B3B429 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E286C3FA159E040900B3B429 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E286C3FD159E0A9600B3B429 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		E286C3FE159E0A9600B3B429 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		E286C401159E0ED900B3B429 /* BoxLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxLocator.h; sourceTree = "<group>"; };
+		E286C402159E0ED900B3B429 /* BoxLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxLocator.m; sourceTree = "<group>"; };
+		E286C405159E4D6C00B3B429 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		E286C406159E4D6C00B3B429 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		E2DCFD8F159D02F1001098E4 /* Boxlox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boxlox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2DCFD93159D02F1001098E4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E2DCFD95159D02F1001098E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E2DCFD97159D02F1001098E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E2DCFD9B159D02F1001098E4 /* Boxlox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Boxlox-Info.plist"; sourceTree = "<group>"; };
+		E2DCFD9D159D02F1001098E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E2DCFD9F159D02F1001098E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E2DCFDA1159D02F1001098E4 /* Boxlox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Boxlox-Prefix.pch"; sourceTree = "<group>"; };
+		E2DCFDA2159D02F1001098E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E2DCFDA3159D02F1001098E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2DCFD8C159D02F1001098E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E286C3FB159E040900B3B429 /* MapKit.framework in Frameworks */,
+				E286C3F9159E033800B3B429 /* CoreLocation.framework in Frameworks */,
+				E2DCFD94159D02F1001098E4 /* UIKit.framework in Frameworks */,
+				E2DCFD96159D02F1001098E4 /* Foundation.framework in Frameworks */,
+				E2DCFD98159D02F1001098E4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E286C3D5159DFDB300B3B429 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E286C3FC159E0A9500B3B429 /* HUD */,
+				E286C3DE159DFEC900B3B429 /* ViewDeck */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		E286C3DE159DFEC900B3B429 /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */,
+				E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */,
+				E286C3E1159DFEC900B3B429 /* WrapController.h */,
+				E286C3E2159DFEC900B3B429 /* WrapController.m */,
+			);
+			path = ViewDeck;
+			sourceTree = "<group>";
+		};
+		E286C3FC159E0A9500B3B429 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				E286C3FD159E0A9600B3B429 /* MBProgressHUD.h */,
+				E286C3FE159E0A9600B3B429 /* MBProgressHUD.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
+		E286C404159E4D2800B3B429 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E286C405159E4D6C00B3B429 /* UIColor+Hex.h */,
+				E286C406159E4D6C00B3B429 /* UIColor+Hex.m */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		E2DCFD84159D02F1001098E4 = {
+			isa = PBXGroup;
+			children = (
+				E2DCFD99159D02F1001098E4 /* Boxlox */,
+				E2DCFD92159D02F1001098E4 /* Frameworks */,
+				E2DCFD90159D02F1001098E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E2DCFD90159D02F1001098E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2DCFD8F159D02F1001098E4 /* Boxlox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2DCFD92159D02F1001098E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E286C3FA159E040900B3B429 /* MapKit.framework */,
+				E286C3F8159E033800B3B429 /* CoreLocation.framework */,
+				E2DCFD93159D02F1001098E4 /* UIKit.framework */,
+				E2DCFD95159D02F1001098E4 /* Foundation.framework */,
+				E2DCFD97159D02F1001098E4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2DCFD99159D02F1001098E4 /* Boxlox */ = {
+			isa = PBXGroup;
+			children = (
+				E286C404159E4D2800B3B429 /* extensions */,
+				E286C3D5159DFDB300B3B429 /* vendor */,
+				E2DCFDA2159D02F1001098E4 /* AppDelegate.h */,
+				E2DCFDA3159D02F1001098E4 /* AppDelegate.m */,
+				E2DCFD9A159D02F1001098E4 /* Supporting Files */,
+				E286C3E5159DFEFC00B3B429 /* MapViewController.h */,
+				E286C3E6159DFEFC00B3B429 /* MapViewController.m */,
+				E286C3E7159DFEFC00B3B429 /* MapViewController.xib */,
+				E286C3ED159DFF2A00B3B429 /* ListViewController.h */,
+				E286C3EE159DFF2A00B3B429 /* ListViewController.m */,
+				E286C3EF159DFF2A00B3B429 /* ListViewController.xib */,
+				E286C3F3159E005100B3B429 /* PadViewController.h */,
+				E286C3F4159E005100B3B429 /* PadViewController.m */,
+				E286C3F5159E005100B3B429 /* PadViewController.xib */,
+				E286C401159E0ED900B3B429 /* BoxLocator.h */,
+				E286C402159E0ED900B3B429 /* BoxLocator.m */,
+			);
+			path = Boxlox;
+			sourceTree = "<group>";
+		};
+		E2DCFD9A159D02F1001098E4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E286C3F2159DFF5F00B3B429 /* CommonMacros.h */,
+				E2DCFD9B159D02F1001098E4 /* Boxlox-Info.plist */,
+				E2DCFD9C159D02F1001098E4 /* InfoPlist.strings */,
+				E2DCFD9F159D02F1001098E4 /* main.m */,
+				E2DCFDA1159D02F1001098E4 /* Boxlox-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2DCFD8E159D02F1001098E4 /* Boxlox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2DCFDA7159D02F1001098E4 /* Build configuration list for PBXNativeTarget "Boxlox" */;
+			buildPhases = (
+				E2DCFD8B159D02F1001098E4 /* Sources */,
+				E2DCFD8C159D02F1001098E4 /* Frameworks */,
+				E2DCFD8D159D02F1001098E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Boxlox;
+			productName = Boxlox;
+			productReference = E2DCFD8F159D02F1001098E4 /* Boxlox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2DCFD86159D02F1001098E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tom Adriaenssen";
+			};
+			buildConfigurationList = E2DCFD89159D02F1001098E4 /* Build configuration list for PBXProject "Boxlox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E2DCFD84159D02F1001098E4;
+			productRefGroup = E2DCFD90159D02F1001098E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2DCFD8E159D02F1001098E4 /* Boxlox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2DCFD8D159D02F1001098E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2DCFD9E159D02F1001098E4 /* InfoPlist.strings in Resources */,
+				E286C3E9159DFEFC00B3B429 /* MapViewController.xib in Resources */,
+				E286C3F1159DFF2A00B3B429 /* ListViewController.xib in Resources */,
+				E286C3F7159E005100B3B429 /* PadViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2DCFD8B159D02F1001098E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2DCFDA0159D02F1001098E4 /* main.m in Sources */,
+				E2DCFDA4159D02F1001098E4 /* AppDelegate.m in Sources */,
+				E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */,
+				E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */,
+				E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */,
+				E286C3F0159DFF2A00B3B429 /* ListViewController.m in Sources */,
+				E286C3F6159E005100B3B429 /* PadViewController.m in Sources */,
+				E286C3FF159E0A9600B3B429 /* MBProgressHUD.m in Sources */,
+				E286C403159E0ED900B3B429 /* BoxLocator.m in Sources */,
+				E286C407159E4D6C00B3B429 /* UIColor+Hex.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E2DCFD9C159D02F1001098E4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2DCFD9D159D02F1001098E4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E2DCFDA5159D02F1001098E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2DCFDA6159D02F1001098E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E2DCFDA8159D02F1001098E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Boxlox/Boxlox-Prefix.pch";
+				INFOPLIST_FILE = "Boxlox/Boxlox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E2DCFDA9159D02F1001098E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Boxlox/Boxlox-Prefix.pch";
+				INFOPLIST_FILE = "Boxlox/Boxlox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2DCFD89159D02F1001098E4 /* Build configuration list for PBXProject "Boxlox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2DCFDA5159D02F1001098E4 /* Debug */,
+				E2DCFDA6159D02F1001098E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2DCFDA7159D02F1001098E4 /* Build configuration list for PBXNativeTarget "Boxlox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2DCFDA8159D02F1001098E4 /* Debug */,
+				E2DCFDA9159D02F1001098E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2DCFD86159D02F1001098E4 /* Project object */;
+}
