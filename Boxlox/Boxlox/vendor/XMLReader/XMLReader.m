@@ -9,7 +9,7 @@
 
 NSString *const kXMLReaderTextNodeKey = @"text";
 
-@interface XMLReader (Internal)
+@interface XMLReader () <NSXMLParserDelegate>
 
 - (id)initWithError:(NSError **)error;
 - (NSDictionary *)objectWithData:(NSData *)data;
@@ -17,7 +17,12 @@ NSString *const kXMLReaderTextNodeKey = @"text";
 @end
 
 
-@implementation XMLReader
+@implementation XMLReader {
+    NSMutableArray *dictionaryStack;
+    NSMutableString *textInProgress;
+    NSError *errorPointer;
+}
+
 
 #pragma mark -
 #pragma mark Public methods
@@ -43,7 +48,7 @@ NSString *const kXMLReaderTextNodeKey = @"text";
 {
     if (self = [super init])
     {
-        errorPointer = error;
+        errorPointer = error ? *error : nil;
     }
     return self;
 }
@@ -155,7 +160,7 @@ NSString *const kXMLReaderTextNodeKey = @"text";
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
     // Set the error pointer to the parser's error object
-    *errorPointer = parseError;
+    errorPointer = parseError;
 }
 
 @end

@@ -15,9 +15,7 @@
 #import "MBProgressHUD.h"
 #import "BoxLocator.h"
 
-@implementation AppDelegate {
-    BoxLocator* _boxLocator;
-}
+@implementation AppDelegate 
 
 - (void)finishLaunchingWithOptions:(NSDictionary *)launchOptions {
     static dispatch_once_t onceToken;

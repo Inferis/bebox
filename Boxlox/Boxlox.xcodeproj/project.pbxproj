@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E2254008159F102D00822F6F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2254007159F102D00822F6F /* XMLReader.m */; };
+		E2254008159F102D00822F6F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2254007159F102D00822F6F /* XMLReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F6C159F193E0061C5BF /* PostBox.m */; };
+		E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */; };
 		E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */; };
 		E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E2159DFEC900B3B429 /* WrapController.m */; };
 		E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E6159DFEFC00B3B429 /* MapViewController.m */; };
@@ -57,6 +59,10 @@
 /* Begin PBXFileReference section */
 		E2254006159F102D00822F6F /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		E2254007159F102D00822F6F /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		E23C5F6B159F193E0061C5BF /* PostBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBox.h; sourceTree = "<group>"; };
+		E23C5F6C159F193E0061C5BF /* PostBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBox.m; sourceTree = "<group>"; };
+		E23C5F6F159F1B740061C5BF /* PostBoxAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBoxAnnotation.h; sourceTree = "<group>"; };
+		E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBoxAnnotation.m; sourceTree = "<group>"; };
 		E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
 		E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
 		E286C3E1159DFEC900B3B429 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
@@ -350,6 +356,10 @@
 				E286C3F5159E005100B3B429 /* PadViewController.xib */,
 				E286C401159E0ED900B3B429 /* BoxLocator.h */,
 				E286C402159E0ED900B3B429 /* BoxLocator.m */,
+				E23C5F6B159F193E0061C5BF /* PostBox.h */,
+				E23C5F6C159F193E0061C5BF /* PostBox.m */,
+				E23C5F6F159F1B740061C5BF /* PostBoxAnnotation.h */,
+				E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */,
 			);
 			path = Boxlox;
 			sourceTree = "<group>";
@@ -466,6 +476,8 @@
 				E286C45C159EE71300B3B429 /* TinResponse.m in Sources */,
 				E286C45D159EE71300B3B429 /* Tin.m in Sources */,
 				E2254008159F102D00822F6F /* XMLReader.m in Sources */,
+				E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */,
+				E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@class CLLocation;
-
-extern NSString* const kBoxLocatorPositionChanged;
+extern NSString* const kBoxLocatorUserPositionChanged;
+extern NSString* const kBoxLocatorBoxesLocated;
 
 @interface BoxLocator : NSObject
 
-@property (nonatomic, readonly, retain) CLLocation* location;
-@property (nonatomic, readonly, assign) BOOL isLocatingBoxes;
+@property (nonatomic, readonly, retain) CLLocation* userLocation;
+@property (nonatomic, retain) CLLocation* centerLocation;
+@property (nonatomic, readonly, retain) NSArray* locatedBoxes;
 
-- (BOOL)locateBoxesFor:(CLLocationCoordinate2D)coordinate;
+- (void)locateBoxesFor:(CLLocationCoordinate2D)coordinate;
 
 @end
