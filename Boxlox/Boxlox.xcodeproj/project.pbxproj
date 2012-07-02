@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20084CA15A0FDF500705840 /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20084C915A0FDF500705840 /* title@2x.png */; };
+		E21EADBF15A0DD570011158E /* postbox-closed.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBB15A0DD570011158E /* postbox-closed.png */; };
+		E21EADC015A0DD570011158E /* postbox-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBC15A0DD570011158E /* postbox-closed@2x.png */; };
+		E21EADC115A0DD570011158E /* postbox-open.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBD15A0DD570011158E /* postbox-open.png */; };
+		E21EADC215A0DD570011158E /* postbox-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBE15A0DD570011158E /* postbox-open@2x.png */; };
+		E21EADC515A0E3800011158E /* PostBoxAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E21EADC415A0E37F0011158E /* PostBoxAnnotationView.m */; };
+		E21EADC815A0F03F0011158E /* NSDate+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = E21EADC715A0F03F0011158E /* NSDate+Formatting.m */; };
+		E21EADCB15A0F08E0011158E /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E21EADCA15A0F08E0011158E /* NSDate+Extensions.m */; };
+		E21EADCE15A0F72A0011158E /* NSDate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E21EADCD15A0F72A0011158E /* NSDate+JSON.m */; };
 		E2254008159F102D00822F6F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2254007159F102D00822F6F /* XMLReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F6C159F193E0061C5BF /* PostBox.m */; };
 		E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */; };
@@ -57,6 +66,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E20084C915A0FDF500705840 /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
+		E21EADBB15A0DD570011158E /* postbox-closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed.png"; sourceTree = "<group>"; };
+		E21EADBC15A0DD570011158E /* postbox-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed@2x.png"; sourceTree = "<group>"; };
+		E21EADBD15A0DD570011158E /* postbox-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-open.png"; sourceTree = "<group>"; };
+		E21EADBE15A0DD570011158E /* postbox-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-open@2x.png"; sourceTree = "<group>"; };
+		E21EADC315A0E37F0011158E /* PostBoxAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBoxAnnotationView.h; sourceTree = "<group>"; };
+		E21EADC415A0E37F0011158E /* PostBoxAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBoxAnnotationView.m; sourceTree = "<group>"; };
+		E21EADC615A0F03F0011158E /* NSDate+Formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Formatting.h"; sourceTree = "<group>"; };
+		E21EADC715A0F03F0011158E /* NSDate+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatting.m"; sourceTree = "<group>"; };
+		E21EADC915A0F08E0011158E /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extensions.h"; sourceTree = "<group>"; };
+		E21EADCA15A0F08E0011158E /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
+		E21EADCC15A0F72A0011158E /* NSDate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JSON.h"; sourceTree = "<group>"; };
+		E21EADCD15A0F72A0011158E /* NSDate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JSON.m"; sourceTree = "<group>"; };
 		E2254006159F102D00822F6F /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		E2254007159F102D00822F6F /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		E23C5F6B159F193E0061C5BF /* PostBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBox.h; sourceTree = "<group>"; };
@@ -167,6 +189,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E21EADBA15A0DD570011158E /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				E20084C915A0FDF500705840 /* title@2x.png */,
+				E21EADBB15A0DD570011158E /* postbox-closed.png */,
+				E21EADBC15A0DD570011158E /* postbox-closed@2x.png */,
+				E21EADBD15A0DD570011158E /* postbox-open.png */,
+				E21EADBE15A0DD570011158E /* postbox-open@2x.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		E2254005159F102D00822F6F /* XMLReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +247,12 @@
 		E286C404159E4D2800B3B429 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E21EADCC15A0F72A0011158E /* NSDate+JSON.h */,
+				E21EADCD15A0F72A0011158E /* NSDate+JSON.m */,
+				E21EADC915A0F08E0011158E /* NSDate+Extensions.h */,
+				E21EADCA15A0F08E0011158E /* NSDate+Extensions.m */,
+				E21EADC615A0F03F0011158E /* NSDate+Formatting.h */,
+				E21EADC715A0F03F0011158E /* NSDate+Formatting.m */,
 				E286C405159E4D6C00B3B429 /* UIColor+Hex.h */,
 				E286C406159E4D6C00B3B429 /* UIColor+Hex.m */,
 			);
@@ -340,6 +380,7 @@
 		E2DCFD99159D02F1001098E4 /* Boxlox */ = {
 			isa = PBXGroup;
 			children = (
+				E21EADBA15A0DD570011158E /* assets */,
 				E286C404159E4D2800B3B429 /* extensions */,
 				E286C3D5159DFDB300B3B429 /* vendor */,
 				E2DCFDA2159D02F1001098E4 /* AppDelegate.h */,
@@ -360,6 +401,8 @@
 				E23C5F6C159F193E0061C5BF /* PostBox.m */,
 				E23C5F6F159F1B740061C5BF /* PostBoxAnnotation.h */,
 				E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */,
+				E21EADC315A0E37F0011158E /* PostBoxAnnotationView.h */,
+				E21EADC415A0E37F0011158E /* PostBoxAnnotationView.m */,
 			);
 			path = Boxlox;
 			sourceTree = "<group>";
@@ -431,6 +474,11 @@
 				E286C3E9159DFEFC00B3B429 /* MapViewController.xib in Resources */,
 				E286C3F1159DFF2A00B3B429 /* ListViewController.xib in Resources */,
 				E286C3F7159E005100B3B429 /* PadViewController.xib in Resources */,
+				E21EADBF15A0DD570011158E /* postbox-closed.png in Resources */,
+				E21EADC015A0DD570011158E /* postbox-closed@2x.png in Resources */,
+				E21EADC115A0DD570011158E /* postbox-open.png in Resources */,
+				E21EADC215A0DD570011158E /* postbox-open@2x.png in Resources */,
+				E20084CA15A0FDF500705840 /* title@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +526,10 @@
 				E2254008159F102D00822F6F /* XMLReader.m in Sources */,
 				E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */,
 				E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */,
+				E21EADC515A0E3800011158E /* PostBoxAnnotationView.m in Sources */,
+				E21EADC815A0F03F0011158E /* NSDate+Formatting.m in Sources */,
+				E21EADCB15A0F08E0011158E /* NSDate+Extensions.m in Sources */,
+				E21EADCE15A0F72A0011158E /* NSDate+JSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +567,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -534,7 +586,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

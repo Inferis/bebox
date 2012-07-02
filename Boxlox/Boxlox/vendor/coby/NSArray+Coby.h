@@ -18,6 +18,7 @@
 - (NSArray *)flatten;
 - (NSArray *)flatten:(int)level;
 - (void)each: (void (^)(id obj))block;
+- (NSArray *)ofClass: (Class)class;
 - (NSArray *)select: (BOOL (^)(id obj))block;
 - (NSArray *)selectIndex: (BOOL (^)(id obj))block;
 - (BOOL)all: (BOOL (^)(id obj))block;

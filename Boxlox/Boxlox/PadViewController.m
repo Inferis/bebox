@@ -30,6 +30,10 @@
     return self;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
 - (void)dealloc {
     self.listViewController = nil;
     self.mapViewController = nil;
@@ -39,6 +43,9 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"local" style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
+
     self.listViewController = [[ListViewController alloc] initWithNibName:nil bundle:nil];
     [self.listContainerView addSubview:self.listViewController.view];
     self.listViewController.view.frame = self.listContainerView.bounds;
@@ -54,6 +61,9 @@
     self.mapViewController = [[MapViewController alloc] initWithNibName:nil bundle:nil];
     [self.mapContainerView addSubview:self.mapViewController.view];
     self.mapViewController.view.frame = self.mapContainerView.bounds;
+    
+    [self addChildViewController:self.mapViewController];
+    [self addChildViewController:self.listViewController];
 }
 
 

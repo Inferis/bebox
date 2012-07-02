@@ -1,4 +1,4 @@
-//
+    //
 //  BoxLocator.m
 //  Boxlox
 //
@@ -25,12 +25,16 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 @implementation BoxLocator {
     CLLocationManager* _locationManager;
     NSOperationQueue* _lookupQueue;
+    NSMutableDictionary* _allBoxes;
 }
 
 - (CLLocation *)userLocation {
     return _locationManager.location;
 }
 
+- (NSArray *)allBoxes {
+    return [_allBoxes allValues];
+}
 
 - (void)setCenterLocation:(CLLocation *)centerLocation {
 
@@ -52,6 +56,8 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
                 
         _lookupQueue = [NSOperationQueue new];
         _lookupQueue.maxConcurrentOperationCount = 1;
+        
+        _allBoxes = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -75,11 +81,18 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 - (void)handleMarkers:(NSArray*)parsedMarkers {
     _locatedBoxes = [parsedMarkers map:^id(id obj) {
         PostBox* box = [PostBox new];
-        box.id = [[obj objectForKey:@"id"] intValue];
-        box.addressNL = [NSString stringWithFormat:@"%@, %@", [obj objectForKey:@"address1_nl"], [obj objectForKey:@"address2_nl"]];
-        box.addressFR = [NSString stringWithFormat:@"%@, %@", [obj objectForKey:@"address1_fr"], [obj objectForKey:@"address2_fr"]];
+        box.id = [NSString stringWithFormat:@"%@", [obj objectForKey:@"id"]];
+        box.addressNL = [NSArray arrayWithObjects:[obj objectForKey:@"address1_nl"], [obj objectForKey:@"address2_nl"], nil];
+        box.addressFR = [NSArray arrayWithObjects:[obj objectForKey:@"address1_fr"], [obj objectForKey:@"address2_fr"], nil];
         box.location = [[CLLocation alloc] initWithLatitude:[[obj objectForKey:@"lat"] doubleValue] longitude:[[obj objectForKey:@"lng"] doubleValue]];
+        box.clearance = [obj objectForKey:@"week"];
+        box.clearanceSaturday =[obj objectForKey:@"sat"];
         return box;
+    }];
+    
+    [_locatedBoxes each:^(PostBox* box) {
+        if (![_allBoxes objectForKey:box.id])
+            [_allBoxes setObject:box forKey:box.id];
     }];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorBoxesLocated object:self];
 }
@@ -87,14 +100,13 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 #pragma mark - Location
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
-    
     if (_centerLocation) {
         CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
         if (distance < 250)
             return;
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
     self.centerLocation = newLocation;
 }
 

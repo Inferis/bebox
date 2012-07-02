@@ -148,6 +148,14 @@
 }
 
 
+- (NSArray *)ofClass: (Class)class {
+    NSMutableArray *array = [NSMutableArray array];
+    for(id obj in self)
+        if([obj isKindOfClass:class])
+            [array addObject: obj];
+    return array;
+}
+
 // Invokes the block passing in successive elements from self,
 // returning an array containing those elements for which the block
 // returns a true value.

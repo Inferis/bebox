@@ -17,6 +17,7 @@ extern NSString* const kBoxLocatorBoxesLocated;
 @property (nonatomic, readonly, retain) CLLocation* userLocation;
 @property (nonatomic, retain) CLLocation* centerLocation;
 @property (nonatomic, readonly, retain) NSArray* locatedBoxes;
+@property (nonatomic, readonly, retain) NSArray* allBoxes;
 
 - (void)locateBoxesFor:(CLLocationCoordinate2D)coordinate;
 

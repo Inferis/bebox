@@ -22,7 +22,11 @@
 }
 
 - (NSString *)title {
-    return _postBox.addressNL;
+    return _postBox.addressNL[0];
+}
+
+- (NSString *)subtitle {
+    return _postBox.addressNL[1];
 }
 
 @end

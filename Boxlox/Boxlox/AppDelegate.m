@@ -39,7 +39,6 @@
         
         UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
         [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
-        navigationController.title = @"Bebox";
         self.window.rootViewController = navigationController;
 
         // Override point for customization after application launch.
