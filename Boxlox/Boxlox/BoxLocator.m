@@ -16,6 +16,7 @@
 
 NSString* const kBoxLocatorUserPositionChanged = @"BoxLocatorUserPositionChanged";
 NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
+NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
 
 @interface BoxLocator () <CLLocationManagerDelegate> {
 }
@@ -37,9 +38,8 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 }
 
 - (void)setCenterLocation:(CLLocation *)centerLocation {
-
     CLLocationDistance distance = [centerLocation distanceFromLocation:_centerLocation];
-    if (distance >= 250) {
+    if (!_centerLocation || distance >= 250) {
         [self locateBoxesFor:centerLocation.coordinate];
     }
     _centerLocation = centerLocation;
@@ -64,9 +64,19 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 }
 
 - (void)locateBoxesFor:(CLLocationCoordinate2D)coordinate {
+    if (_lookupQueue.operationCount == 0)
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorBoxesLocating object:self];
+
     [_lookupQueue cancelAllOperations]; // remove previous lookups
     
-    [_lookupQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
+    __block NSOperation* operation = [NSBlockOperation blockOperationWithBlock:^{
+        NSLog(@"started");
+        [NSThread sleepForTimeInterval:0.3];
+        
+        if ([operation isCancelled])
+            return;
+        
+        NSLog(@"started2");
         NSDictionary* query = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:coordinate.latitude], @"lat", [NSNumber numberWithDouble:coordinate.longitude], @"lng", nil];
         
         TinResponse* response = [Tin get:@"http://www.bpost2.be/redboxes/nl/get_boxes.php" query:query];
@@ -75,7 +85,10 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
         if (markers) {
             [self handleMarkers:markers];
         }
-    }]];
+        NSLog(@"done");
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorBoxesLocated object:self];
+    }];
+    [_lookupQueue addOperation:operation];
 }
 
 - (void)handleMarkers:(NSArray*)parsedMarkers {
@@ -94,7 +107,6 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
         if (![_allBoxes objectForKey:box.id])
             [_allBoxes setObject:box forKey:box.id];
     }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorBoxesLocated object:self];
 }
 
 #pragma mark - Location
@@ -102,7 +114,7 @@ NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     if (_centerLocation) {
         CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
-        if (distance < 250)
+        if (distance < 50)
             return;
     }
     

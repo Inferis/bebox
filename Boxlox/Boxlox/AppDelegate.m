@@ -14,8 +14,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
 #import "BoxLocator.h"
+#import "UIColor+Hex.h"
 
-@implementation AppDelegate 
+@implementation AppDelegate
 
 - (void)finishLaunchingWithOptions:(NSDictionary *)launchOptions {
     static dispatch_once_t onceToken;
@@ -42,6 +43,7 @@
         
         UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
         [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+        [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"titlebg.png"] resizableImageWithCapInsets:UIEdgeInsetsZero] forBarMetrics:UIBarMetricsDefault];
         self.window.rootViewController = navigationController;
 
         // Override point for customization after application launch.

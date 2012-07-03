@@ -36,12 +36,20 @@
     [super viewDidLoad];
 
     self.tableView.rowHeight = self.tableView.rowHeight/2.0 * 3.0;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listbackground.png"]];
 }
 
 - (void)mapView:(MKMapView *)mapView didShowBoxes:(NSArray *)boxes {
     NSArray* oldBoxes = _boxes;
     
     _boxes = [boxes sortedArrayUsingComparator:^NSComparisonResult(PostBox* obj1, PostBox* obj2) {
+        BOOL c1 = [obj1 hasClearanceScheduledForToday];
+        BOOL c2 = [obj2 hasClearanceScheduledForToday];
+        if (c1 && !c2) return NSOrderedAscending;
+        if (!c1 && c2) return NSOrderedDescending;
+        
         CLLocationDistance d1 = [mapView.userLocation.location distanceFromLocation:obj1.location];
         CLLocationDistance d2 = [mapView.userLocation.location distanceFromLocation:obj2.location];
         
@@ -74,12 +82,10 @@
         
     }
     
-    NSLog(@"d=%@, i=%@", deleted, inserted);
     [self.tableView beginUpdates];
     if (!IsEmpty(deleted)) [self.tableView deleteRowsAtIndexPaths:deleted withRowAnimation:UITableViewRowAnimationTop];
     if (!IsEmpty(inserted)) [self.tableView insertRowsAtIndexPaths:inserted withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView endUpdates];
-//    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

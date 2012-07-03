@@ -19,6 +19,11 @@
 		E2254008159F102D00822F6F /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2254007159F102D00822F6F /* XMLReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F6C159F193E0061C5BF /* PostBox.m */; };
 		E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */; };
+		E27B83CD15A31A8B0028E1AC /* titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83CC15A31A8B0028E1AC /* titlebg@2x.png */; };
+		E27B83D015A31F800028E1AC /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83CF15A31F800028E1AC /* list@2x.png */; };
+		E27B83D215A3222C0028E1AC /* compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D115A3222C0028E1AC /* compass@2x.png */; };
+		E27B83D415A3254F0028E1AC /* compass-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D315A3254F0028E1AC /* compass-on@2x.png */; };
+		E27B83D615A34FF40028E1AC /* listbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D515A34FF40028E1AC /* listbackground@2x.png */; };
 		E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */; };
 		E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E2159DFEC900B3B429 /* WrapController.m */; };
 		E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E6159DFEFC00B3B429 /* MapViewController.m */; };
@@ -91,6 +96,11 @@
 		E23C5F6C159F193E0061C5BF /* PostBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBox.m; sourceTree = "<group>"; };
 		E23C5F6F159F1B740061C5BF /* PostBoxAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBoxAnnotation.h; sourceTree = "<group>"; };
 		E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBoxAnnotation.m; sourceTree = "<group>"; };
+		E27B83CC15A31A8B0028E1AC /* titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titlebg@2x.png"; sourceTree = "<group>"; };
+		E27B83CF15A31F800028E1AC /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
+		E27B83D115A3222C0028E1AC /* compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass@2x.png"; sourceTree = "<group>"; };
+		E27B83D315A3254F0028E1AC /* compass-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-on@2x.png"; sourceTree = "<group>"; };
+		E27B83D515A34FF40028E1AC /* listbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listbackground@2x.png"; sourceTree = "<group>"; };
 		E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
 		E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
 		E286C3E1159DFEC900B3B429 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
@@ -206,6 +216,11 @@
 		E21EADBA15A0DD570011158E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E27B83D515A34FF40028E1AC /* listbackground@2x.png */,
+				E27B83D315A3254F0028E1AC /* compass-on@2x.png */,
+				E27B83D115A3222C0028E1AC /* compass@2x.png */,
+				E27B83CF15A31F800028E1AC /* list@2x.png */,
+				E27B83CC15A31A8B0028E1AC /* titlebg@2x.png */,
 				E20084C915A0FDF500705840 /* title@2x.png */,
 				E21EADBB15A0DD570011158E /* postbox-closed.png */,
 				E21EADBC15A0DD570011158E /* postbox-closed@2x.png */,
@@ -503,6 +518,11 @@
 				E20084CA15A0FDF500705840 /* title@2x.png in Resources */,
 				E28C618A15A23D9600328B51 /* postbox-hilite.png in Resources */,
 				E28C618B15A23D9600328B51 /* postbox-hilite@2x.png in Resources */,
+				E27B83CD15A31A8B0028E1AC /* titlebg@2x.png in Resources */,
+				E27B83D015A31F800028E1AC /* list@2x.png in Resources */,
+				E27B83D215A3222C0028E1AC /* compass@2x.png in Resources */,
+				E27B83D415A3254F0028E1AC /* compass-on@2x.png in Resources */,
+				E27B83D615A34FF40028E1AC /* listbackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

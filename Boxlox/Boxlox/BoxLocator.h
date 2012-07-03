@@ -11,6 +11,7 @@
 
 extern NSString* const kBoxLocatorUserPositionChanged;
 extern NSString* const kBoxLocatorBoxesLocated;
+extern NSString* const kBoxLocatorBoxesLocating;
 
 @interface BoxLocator : NSObject
 

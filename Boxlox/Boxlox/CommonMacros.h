@@ -42,9 +42,17 @@ static inline BOOL IsInSimulator() {
 	return NO;
 }
 
-#define dispatch_async_bg(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), block)
-#define dispatch_async_main(block) dispatch_async(dispatch_get_main_queue(), block)
-#define dispatch_sync_main(block) dispatch_sync(dispatch_get_main_queue(), block)
+static inline void dispatch_async_bg(dispatch_block_t block) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), block);
+}
+
+static inline void dispatch_async_main(dispatch_block_t block) {
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
+static inline void dispatch_sync_main(dispatch_block_t block) {
+    dispatch_sync(dispatch_get_main_queue(), block);
+}
 
 // A check to see if we're running on an iPad.
 // Picked up [here](http://cocoawithlove.com/2010/07/tips-tricks-for-conditional-ios3-ios32.html)
