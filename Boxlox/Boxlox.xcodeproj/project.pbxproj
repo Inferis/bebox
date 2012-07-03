@@ -74,6 +74,15 @@
 		E2DCFD9E159D02F1001098E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DCFD9C159D02F1001098E4 /* InfoPlist.strings */; };
 		E2DCFDA0159D02F1001098E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DCFD9F159D02F1001098E4 /* main.m */; };
 		E2DCFDA4159D02F1001098E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DCFDA3159D02F1001098E4 /* AppDelegate.m */; };
+		E2E6749A15A3978B00F8654A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E6749915A3978B00F8654A /* Icon.png */; };
+		E2E6749C15A3979100F8654A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E6749B15A3979100F8654A /* Icon@2x.png */; };
+		E2E6749E15A3979900F8654A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E6749D15A3979900F8654A /* Icon-72.png */; };
+		E2E674A015A3979B00F8654A /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E6749F15A3979B00F8654A /* Icon-72@2x.png */; };
+		E2E674A215A39A1300F8654A /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E674A115A39A1300F8654A /* Default-Landscape@2x~ipad.png */; };
+		E2E674A415A39A1700F8654A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E674A315A39A1700F8654A /* Default-Landscape~ipad.png */; };
+		E2E674A615A39C0E00F8654A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E674A515A39C0E00F8654A /* Default.png */; };
+		E2E674A815A39C1000F8654A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E674A715A39C1000F8654A /* Default@2x.png */; };
+		E2E674AC15A3A1CD00F8654A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E674AB15A3A1CD00F8654A /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +204,15 @@
 		E2DCFDA1159D02F1001098E4 /* Boxlox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Boxlox-Prefix.pch"; sourceTree = "<group>"; };
 		E2DCFDA2159D02F1001098E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E2DCFDA3159D02F1001098E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E2E6749915A3978B00F8654A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		E2E6749B15A3979100F8654A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		E2E6749D15A3979900F8654A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		E2E6749F15A3979B00F8654A /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		E2E674A115A39A1300F8654A /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		E2E674A315A39A1700F8654A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		E2E674A515A39C0E00F8654A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E2E674A715A39C1000F8654A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E2E674AB15A3A1CD00F8654A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,13 +220,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2E674AC15A3A1CD00F8654A /* libz.dylib in Frameworks */,
+				E286C454159EE71300B3B429 /* libTestFlight.a in Frameworks */,
 				E28C618715A1EEC500328B51 /* QuartzCore.framework in Frameworks */,
 				E286C3FB159E040900B3B429 /* MapKit.framework in Frameworks */,
 				E286C3F9159E033800B3B429 /* CoreLocation.framework in Frameworks */,
 				E2DCFD94159D02F1001098E4 /* UIKit.framework in Frameworks */,
 				E2DCFD96159D02F1001098E4 /* Foundation.framework in Frameworks */,
 				E2DCFD98159D02F1001098E4 /* CoreGraphics.framework in Frameworks */,
-				E286C454159EE71300B3B429 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +406,15 @@
 		E2DCFD84159D02F1001098E4 = {
 			isa = PBXGroup;
 			children = (
+				E2E674AB15A3A1CD00F8654A /* libz.dylib */,
+				E2E674A715A39C1000F8654A /* Default@2x.png */,
+				E2E674A515A39C0E00F8654A /* Default.png */,
+				E2E674A315A39A1700F8654A /* Default-Landscape~ipad.png */,
+				E2E674A115A39A1300F8654A /* Default-Landscape@2x~ipad.png */,
+				E2E6749F15A3979B00F8654A /* Icon-72@2x.png */,
+				E2E6749D15A3979900F8654A /* Icon-72.png */,
+				E2E6749B15A3979100F8654A /* Icon@2x.png */,
+				E2E6749915A3978B00F8654A /* Icon.png */,
 				E2DCFD99159D02F1001098E4 /* Boxlox */,
 				E2DCFD92159D02F1001098E4 /* Frameworks */,
 				E2DCFD90159D02F1001098E4 /* Products */,
@@ -527,6 +555,14 @@
 				E27B83D415A3254F0028E1AC /* compass-on@2x.png in Resources */,
 				E27B83D615A34FF40028E1AC /* listbackground@2x.png in Resources */,
 				E27B83D815A383F60028E1AC /* list-hi@2x.png in Resources */,
+				E2E6749A15A3978B00F8654A /* Icon.png in Resources */,
+				E2E6749C15A3979100F8654A /* Icon@2x.png in Resources */,
+				E2E6749E15A3979900F8654A /* Icon-72.png in Resources */,
+				E2E674A015A3979B00F8654A /* Icon-72@2x.png in Resources */,
+				E2E674A215A39A1300F8654A /* Default-Landscape@2x~ipad.png in Resources */,
+				E2E674A415A39A1700F8654A /* Default-Landscape~ipad.png in Resources */,
+				E2E674A615A39C0E00F8654A /* Default.png in Resources */,
+				E2E674A815A39C1000F8654A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +712,45 @@
 			};
 			name = Release;
 		};
+		E2E674A915A3A08200F8654A /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		E2E674AA15A3A08200F8654A /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tom Adriaenssen";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Boxlox/Boxlox-Prefix.pch";
+				INFOPLIST_FILE = "Boxlox/Boxlox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Boxlox/vendor/TestFlightSDK\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27E44F24-2633-4F01-BE25-F37A2AD07F07";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Adhoc;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -684,6 +759,7 @@
 			buildConfigurations = (
 				E2DCFDA5159D02F1001098E4 /* Debug */,
 				E2DCFDA6159D02F1001098E4 /* Release */,
+				E2E674A915A3A08200F8654A /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -693,6 +769,7 @@
 			buildConfigurations = (
 				E2DCFDA8159D02F1001098E4 /* Debug */,
 				E2DCFDA9159D02F1001098E4 /* Release */,
+				E2E674AA15A3A08200F8654A /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
