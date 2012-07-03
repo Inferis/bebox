@@ -15,6 +15,7 @@
 #import "PostBoxAnnotation.h"
 #import "Coby.h"
 #import "PostBoxAnnotationView.h"
+#import "BoxMapDelegate.h"
 
 @interface MapViewController () <MKMapViewDelegate>
 
@@ -24,6 +25,7 @@
 
 @implementation MapViewController {
     CLLocationCoordinate2D* _currentCenter;
+    BOOL _following, _first;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,17 +38,23 @@
     return self;
 }
 
+- (UINavigationItem *)navigationItem {
+    return [self.parentViewController navigationItem] ? [self.parentViewController navigationItem] : [super navigationItem];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
  
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"local" style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
-
+    _first = YES;
+    
     if (!IsIPad()) {
         [self.viewDeckController openLeftViewAnimated:NO];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"list" style:UIBarButtonItemStyleDone target:self.viewDeckController action:@selector(toggleLeftView)];
     }
+    
+    self.mapView.centerCoordinate = [[BoxLox boxLocator] centerLocation].coordinate;
 }
 
 - (void)dealloc {
@@ -58,6 +66,7 @@
 }
 
 - (void)boxesChanged:(NSNotification*)notification {
+    NSLog(@"boxes changed");
     NSArray* boxes = [(BoxLocator*)[notification object] allBoxes];
     NSArray* annotations = [boxes map:^id(id box) {
         return [[PostBoxAnnotation alloc] initWithPostBox:box];
@@ -100,6 +109,10 @@
         
         [_mapView setRegion:[_mapView regionThatFits:region] animated:YES];
     }
+    else
+        _mapView.centerCoordinate = _mapView.centerCoordinate;
+    
+    [self updateVisibleBoxes];
     
 }
 
@@ -107,18 +120,14 @@
 - (void)locationChanged:(NSNotification*)notification {
     CLLocation* location = [(BoxLocator*)[notification object] userLocation];
     
-    CLLocation* currentCenter = [[CLLocation alloc] initWithLatitude:_mapView.centerCoordinate.latitude longitude:_mapView.centerCoordinate.longitude];
-    if ([currentCenter distanceFromLocation:location] > 10) {
+    if (_following || _first) {
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 150, 150);
         viewRegion = [_mapView regionThatFits:viewRegion];
         [_mapView setRegion:viewRegion animated:YES];
-    }
-}
+        _first = NO;
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+        [self updateVisibleBoxes];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -129,9 +138,21 @@
 #pragma mark - Map delegate
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [self updateVisibleBoxes];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    NSLog(@"did change");
     [BoxLox boxLocator].centerLocation = [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude longitude:mapView.centerCoordinate.longitude];
+    [self updateVisibleBoxes];
+}
+
+
+- (void)updateVisibleBoxes {
+    NSArray* boxes = [[[[_mapView annotationsInMapRect:_mapView.visibleMapRect] allObjects] ofClass:[PostBoxAnnotation class]] valueForKey:@"postBox"];
+    boxes = [[boxes toDictionaryUsingKeyField:@"id"] allValues];
     
-    //_mapView annotationsInMapRect:[mapView conve
+    [self.boxMapDelegate mapView:_mapView didShowBoxes:boxes];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -147,6 +168,16 @@
     [rightButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside];
     pin.rightCalloutAccessoryView = rightButton;
     
-    return pin;}
+    return pin;
+}
 
+- (void)selectBox:(PostBox *)box {
+    PostBoxAnnotation* selected = [[[[_mapView annotations] ofClass:[PostBoxAnnotation class] ] select:^BOOL(PostBoxAnnotation* pba) {
+        return [pba.postBox.id isEqualToString:box.id];
+    }] first];
+    
+    [_mapView selectAnnotation:selected animated:YES];
+    _mapView.centerCoordinate = box.location.coordinate;
+    [self.viewDeckController openLeftView];
+}
 @end

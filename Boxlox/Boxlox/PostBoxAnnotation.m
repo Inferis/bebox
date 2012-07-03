@@ -22,11 +22,11 @@
 }
 
 - (NSString *)title {
-    return _postBox.addressNL[0];
+    return [NSString stringWithFormat:@"%@\n%@", _postBox.addressNL[0], _postBox.addressNL[1]];
 }
 
 - (NSString *)subtitle {
-    return _postBox.addressNL[1];
+    return _postBox.clearance;
 }
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BoxMapDelegate.h"
 
-@interface ListViewController : UITableViewController
+@interface ListViewController : UITableViewController <BoxMapDelegate>
+
+@property (nonatomic, weak) id<BoxSelectionDelegate> boxSelectionDelegate;
 
 @end

@@ -30,4 +30,7 @@
 - (NSArray *)take:(int)limit;
 - (int)index:(BOOL (^)(id obj))block;
 
+- (NSDictionary*)toDictionaryUsingKeyField:(NSString*)field;
+- (NSArray*)allIndices;
+
 @end

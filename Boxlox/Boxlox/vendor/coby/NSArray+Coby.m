@@ -260,4 +260,20 @@
     return array;
 }
 
+- (NSDictionary*)toDictionaryUsingKeyField:(NSString*)field {
+    NSMutableDictionary* result = [NSMutableDictionary dictionaryWithCapacity:self.count];
+    
+    for(id obj in self) {
+        [result setValue:obj forKey:[obj valueForKey:field]];
+    }
+    return result;
+}
+
+- (NSArray*)allIndices {
+    return [self selectIndex:^BOOL(id obj) {
+        return YES;
+    }];
+}
+
+
 @end

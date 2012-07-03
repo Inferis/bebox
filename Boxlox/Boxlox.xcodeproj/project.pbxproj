@@ -57,6 +57,11 @@
 		E286C45B159EE71300B3B429 /* TinOAuthAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C440159EE71300B3B429 /* TinOAuthAuthenticator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E286C45C159EE71300B3B429 /* TinResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C442159EE71300B3B429 /* TinResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E286C45D159EE71300B3B429 /* Tin.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C444159EE71300B3B429 /* Tin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E28C618115A1DC5000328B51 /* UITableViewCell+AutoDequeue.m in Sources */ = {isa = PBXBuildFile; fileRef = E28C618015A1DC5000328B51 /* UITableViewCell+AutoDequeue.m */; };
+		E28C618515A1EBD400328B51 /* PostBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E28C618415A1EBD400328B51 /* PostBoxCell.m */; };
+		E28C618715A1EEC500328B51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28C618615A1EEC500328B51 /* QuartzCore.framework */; };
+		E28C618A15A23D9600328B51 /* postbox-hilite.png in Resources */ = {isa = PBXBuildFile; fileRef = E28C618815A23D9600328B51 /* postbox-hilite.png */; };
+		E28C618B15A23D9600328B51 /* postbox-hilite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E28C618915A23D9600328B51 /* postbox-hilite@2x.png */; };
 		E2DCFD94159D02F1001098E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD93159D02F1001098E4 /* UIKit.framework */; };
 		E2DCFD96159D02F1001098E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD95159D02F1001098E4 /* Foundation.framework */; };
 		E2DCFD98159D02F1001098E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DCFD97159D02F1001098E4 /* CoreGraphics.framework */; };
@@ -67,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		E20084C915A0FDF500705840 /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
+		E20084D015A1D4CE00705840 /* BoxMapDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxMapDelegate.h; sourceTree = "<group>"; };
 		E21EADBB15A0DD570011158E /* postbox-closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed.png"; sourceTree = "<group>"; };
 		E21EADBC15A0DD570011158E /* postbox-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed@2x.png"; sourceTree = "<group>"; };
 		E21EADBD15A0DD570011158E /* postbox-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-open.png"; sourceTree = "<group>"; };
@@ -160,6 +166,13 @@
 		E286C442159EE71300B3B429 /* TinResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TinResponse.m; sourceTree = "<group>"; };
 		E286C443159EE71300B3B429 /* Tin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tin.h; sourceTree = "<group>"; };
 		E286C444159EE71300B3B429 /* Tin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tin.m; sourceTree = "<group>"; };
+		E28C617F15A1DC5000328B51 /* UITableViewCell+AutoDequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+AutoDequeue.h"; sourceTree = "<group>"; };
+		E28C618015A1DC5000328B51 /* UITableViewCell+AutoDequeue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+AutoDequeue.m"; sourceTree = "<group>"; };
+		E28C618315A1EBD400328B51 /* PostBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBoxCell.h; sourceTree = "<group>"; };
+		E28C618415A1EBD400328B51 /* PostBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBoxCell.m; sourceTree = "<group>"; };
+		E28C618615A1EEC500328B51 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E28C618815A23D9600328B51 /* postbox-hilite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-hilite.png"; sourceTree = "<group>"; };
+		E28C618915A23D9600328B51 /* postbox-hilite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-hilite@2x.png"; sourceTree = "<group>"; };
 		E2DCFD8F159D02F1001098E4 /* Boxlox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boxlox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DCFD93159D02F1001098E4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E2DCFD95159D02F1001098E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -177,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E28C618715A1EEC500328B51 /* QuartzCore.framework in Frameworks */,
 				E286C3FB159E040900B3B429 /* MapKit.framework in Frameworks */,
 				E286C3F9159E033800B3B429 /* CoreLocation.framework in Frameworks */,
 				E2DCFD94159D02F1001098E4 /* UIKit.framework in Frameworks */,
@@ -197,6 +211,8 @@
 				E21EADBC15A0DD570011158E /* postbox-closed@2x.png */,
 				E21EADBD15A0DD570011158E /* postbox-open.png */,
 				E21EADBE15A0DD570011158E /* postbox-open@2x.png */,
+				E28C618815A23D9600328B51 /* postbox-hilite.png */,
+				E28C618915A23D9600328B51 /* postbox-hilite@2x.png */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -247,6 +263,8 @@
 		E286C404159E4D2800B3B429 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E28C617F15A1DC5000328B51 /* UITableViewCell+AutoDequeue.h */,
+				E28C618015A1DC5000328B51 /* UITableViewCell+AutoDequeue.m */,
 				E21EADCC15A0F72A0011158E /* NSDate+JSON.h */,
 				E21EADCD15A0F72A0011158E /* NSDate+JSON.m */,
 				E21EADC915A0F08E0011158E /* NSDate+Extensions.h */,
@@ -368,6 +386,7 @@
 		E2DCFD92159D02F1001098E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E28C618615A1EEC500328B51 /* QuartzCore.framework */,
 				E286C3FA159E040900B3B429 /* MapKit.framework */,
 				E286C3F8159E033800B3B429 /* CoreLocation.framework */,
 				E2DCFD93159D02F1001098E4 /* UIKit.framework */,
@@ -403,6 +422,9 @@
 				E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */,
 				E21EADC315A0E37F0011158E /* PostBoxAnnotationView.h */,
 				E21EADC415A0E37F0011158E /* PostBoxAnnotationView.m */,
+				E20084D015A1D4CE00705840 /* BoxMapDelegate.h */,
+				E28C618315A1EBD400328B51 /* PostBoxCell.h */,
+				E28C618415A1EBD400328B51 /* PostBoxCell.m */,
 			);
 			path = Boxlox;
 			sourceTree = "<group>";
@@ -479,6 +501,8 @@
 				E21EADC115A0DD570011158E /* postbox-open.png in Resources */,
 				E21EADC215A0DD570011158E /* postbox-open@2x.png in Resources */,
 				E20084CA15A0FDF500705840 /* title@2x.png in Resources */,
+				E28C618A15A23D9600328B51 /* postbox-hilite.png in Resources */,
+				E28C618B15A23D9600328B51 /* postbox-hilite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +554,8 @@
 				E21EADC815A0F03F0011158E /* NSDate+Formatting.m in Sources */,
 				E21EADCB15A0F08E0011158E /* NSDate+Extensions.m in Sources */,
 				E21EADCE15A0F72A0011158E /* NSDate+JSON.m in Sources */,
+				E28C618115A1DC5000328B51 /* UITableViewCell+AutoDequeue.m in Sources */,
+				E28C618515A1EBD400328B51 /* PostBoxCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

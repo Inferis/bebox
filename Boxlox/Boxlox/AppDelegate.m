@@ -22,8 +22,6 @@
     dispatch_once(&onceToken, ^{
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
-        ListViewController* listViewController = [[ListViewController alloc] initWithNibName:nil bundle:nil];
-        MapViewController* mapViewController = [[MapViewController alloc] initWithNibName:nil bundle:nil];
         UIViewController* rootViewController;
         
         if (IsIPad()) {
@@ -31,6 +29,11 @@
             rootViewController = padViewController;
         }
         else {
+            ListViewController* listViewController = [[ListViewController alloc] initWithNibName:nil bundle:nil];
+            MapViewController* mapViewController = [[MapViewController alloc] initWithNibName:nil bundle:nil];
+            mapViewController.boxMapDelegate = listViewController;
+            listViewController.boxSelectionDelegate = mapViewController;
+
             IIViewDeckController* deckController = [[IIViewDeckController alloc] initWithCenterViewController:listViewController leftViewController:mapViewController];
             deckController.leftLedge = 0;
             [deckController openLeftView];

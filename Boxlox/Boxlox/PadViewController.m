@@ -25,7 +25,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.listViewController = [[ListViewController alloc] initWithNibName:nil bundle:nil];
+        [self addChildViewController:self.listViewController];
+        
+        self.mapViewController = [[MapViewController alloc] initWithNibName:nil bundle:nil];
+        [self addChildViewController:self.mapViewController];
+        
+        self.mapViewController.boxMapDelegate = self.listViewController;
+        self.listViewController.boxSelectionDelegate = self.mapViewController;
+        
     }
     return self;
 }
@@ -43,12 +51,14 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"local" style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"local" style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
 
-    self.listViewController = [[ListViewController alloc] initWithNibName:nil bundle:nil];
     [self.listContainerView addSubview:self.listViewController.view];
     self.listViewController.view.frame = self.listContainerView.bounds;
+
+    [self.mapContainerView addSubview:self.mapViewController.view];
+    self.mapViewController.view.frame = self.mapContainerView.bounds;
 
     UIView* shadowedView = self.listContainerView;
     shadowedView.layer.masksToBounds = NO;
@@ -58,12 +68,6 @@
     shadowedView.layer.shadowOffset = CGSizeZero;
     shadowedView.layer.shadowPath = [[UIBezierPath bezierPathWithRect:shadowedView.bounds] CGPath];
     
-    self.mapViewController = [[MapViewController alloc] initWithNibName:nil bundle:nil];
-    [self.mapContainerView addSubview:self.mapViewController.view];
-    self.mapViewController.view.frame = self.mapContainerView.bounds;
-    
-    [self addChildViewController:self.mapViewController];
-    [self addChildViewController:self.listViewController];
 }
 
 

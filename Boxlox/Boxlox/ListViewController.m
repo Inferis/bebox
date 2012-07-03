@@ -7,12 +7,20 @@
 //
 
 #import "ListViewController.h"
+#import "BoxMapDelegate.h"
+#import "Coby.h"
+#import <MapKit/MapKit.h>
+#import "PostBox.h"
+#import "UITableViewCell+AutoDequeue.h"
+#import "PostBoxCell.h"
 
 @interface ListViewController ()
 
 @end
 
-@implementation ListViewController
+@implementation ListViewController {
+    NSArray* _boxes;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,100 +35,80 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.rowHeight = self.tableView.rowHeight/2.0 * 3.0;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)mapView:(MKMapView *)mapView didShowBoxes:(NSArray *)boxes {
+    NSArray* oldBoxes = _boxes;
+    
+    _boxes = [boxes sortedArrayUsingComparator:^NSComparisonResult(PostBox* obj1, PostBox* obj2) {
+        CLLocationDistance d1 = [mapView.userLocation.location distanceFromLocation:obj1.location];
+        CLLocationDistance d2 = [mapView.userLocation.location distanceFromLocation:obj2.location];
+        
+        return d1 == d2 ? NSOrderedSame : d1 < d2 ? NSOrderedAscending : NSOrderedDescending;
+    }];
+    
+    NSArray* deleted = nil;
+    NSArray* inserted = nil;
+    if (IsEmpty(oldBoxes)) {
+        inserted = [[_boxes allIndices] map:^id(NSNumber* row) {
+            return [NSIndexPath indexPathForRow:[row intValue] inSection:0];
+        }];
+    }
+    else {
+        deleted = [[oldBoxes selectIndex:^BOOL(PostBox* ob) {
+            return ![_boxes any:^BOOL(PostBox* nb) {
+                return [ob.id isEqualToString:nb.id];
+            }];
+        }] map:^id(NSNumber* row) {
+            return [NSIndexPath indexPathForRow:[row intValue] inSection:0];
+        }];
+        
+        inserted = [[_boxes selectIndex:^BOOL(PostBox* nb) {
+            return ![oldBoxes any:^BOOL(PostBox* ob) {
+                return [ob.id isEqualToString:nb.id];
+            }];
+        }] map:^id(NSNumber* row) {
+            return [NSIndexPath indexPathForRow:[row intValue] inSection:0];
+        }];
+        
+    }
+    
+    NSLog(@"d=%@, i=%@", deleted, inserted);
+    [self.tableView beginUpdates];
+    if (!IsEmpty(deleted)) [self.tableView deleteRowsAtIndexPaths:deleted withRowAnimation:UITableViewRowAnimationTop];
+    if (!IsEmpty(inserted)) [self.tableView insertRowsAtIndexPaths:inserted withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView endUpdates];
+//    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [_boxes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PostBoxCell *cell = [PostBoxCell tableViewAutoDequeueCell:self.tableView];
     
-    // Configure the cell...
+    PostBox* box = _boxes[indexPath.row];
+    [cell configure:box];
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [self.boxSelectionDelegate selectBox:_boxes[indexPath.row]];
 }
 
 @end
