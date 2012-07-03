@@ -15,12 +15,16 @@
 #import "MBProgressHUD.h"
 #import "BoxLocator.h"
 #import "UIColor+Hex.h"
+#import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (void)finishLaunchingWithOptions:(NSDictionary *)launchOptions {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+#if !DEBUG
+        [TestFlight takeOff:@"95c7c2a7e1a1929c69c4f452f3b85108_MjQyNjIwMTItMDctMDMgMTc6MzU6NTQuNTc0NzYw"];
+#endif
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
         UIViewController* rootViewController;
