@@ -24,6 +24,7 @@
 		E27B83D215A3222C0028E1AC /* compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D115A3222C0028E1AC /* compass@2x.png */; };
 		E27B83D415A3254F0028E1AC /* compass-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D315A3254F0028E1AC /* compass-on@2x.png */; };
 		E27B83D615A34FF40028E1AC /* listbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D515A34FF40028E1AC /* listbackground@2x.png */; };
+		E27B83D815A383F60028E1AC /* list-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D715A383F60028E1AC /* list-hi@2x.png */; };
 		E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */; };
 		E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E2159DFEC900B3B429 /* WrapController.m */; };
 		E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E6159DFEFC00B3B429 /* MapViewController.m */; };
@@ -101,6 +102,7 @@
 		E27B83D115A3222C0028E1AC /* compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass@2x.png"; sourceTree = "<group>"; };
 		E27B83D315A3254F0028E1AC /* compass-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-on@2x.png"; sourceTree = "<group>"; };
 		E27B83D515A34FF40028E1AC /* listbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listbackground@2x.png"; sourceTree = "<group>"; };
+		E27B83D715A383F60028E1AC /* list-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-hi@2x.png"; sourceTree = "<group>"; };
 		E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
 		E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
 		E286C3E1159DFEC900B3B429 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		E21EADBA15A0DD570011158E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E27B83D715A383F60028E1AC /* list-hi@2x.png */,
 				E27B83D515A34FF40028E1AC /* listbackground@2x.png */,
 				E27B83D315A3254F0028E1AC /* compass-on@2x.png */,
 				E27B83D115A3222C0028E1AC /* compass@2x.png */,
@@ -523,6 +526,7 @@
 				E27B83D215A3222C0028E1AC /* compass@2x.png in Resources */,
 				E27B83D415A3254F0028E1AC /* compass-on@2x.png in Resources */,
 				E27B83D615A34FF40028E1AC /* listbackground@2x.png in Resources */,
+				E27B83D815A383F60028E1AC /* list-hi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

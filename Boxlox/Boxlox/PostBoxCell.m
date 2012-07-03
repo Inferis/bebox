@@ -14,10 +14,8 @@
 - (id)initWithReuseIdentifier:(NSString*)identifier {
     if ((self = [self initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier])) {
         CAGradientLayer *gradient = (CAGradientLayer*)self.layer;
-        gradient.colors = [NSArray arrayWithObjects:
-                           (id)[[UIColor whiteColor] CGColor],
-                           [[UIColor colorWithHex:0xf2f2f2] CGColor],
-                           nil];
+        gradient.colors = @[(id)[[UIColor whiteColor] CGColor], (id)[[UIColor colorWithHex:0xf2f2f2] CGColor], (id)[[UIColor colorWithHex:0xcccccc] CGColor]];
+        gradient.locations = @[@0, @0.99, @1];
         self.textLabel.opaque = NO;
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.numberOfLines = 2;
@@ -38,4 +36,5 @@
 + (Class)layerClass {
     return [CAGradientLayer class];
 }
+
 @end

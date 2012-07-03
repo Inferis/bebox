@@ -20,25 +20,25 @@
     return [self.addressFR componentsJoinedByString:@", "];
 }
 
-- (BOOL)hasClearanceScheduledForToday {
+- (NSString*)todaysClearance {
     int weekday = [[NSDate date] dayOfWeek];
     if (weekday == 1) {
         // sunday
-        return NO;
+        return nil;
     }
     
-    NSString* time;
     if (weekday == 7) {
         // saturday
-        time = self.clearanceSaturday;
+        return self.clearanceSaturday;
     }
-    else {
-        time = self.clearance;
-    }
-    
+
+    return self.clearance;
+}
+
+- (BOOL)hasClearanceScheduledForToday {
+    NSString* time = [self todaysClearance];
     if (IsEmpty(time))
         return NO;
-    
     
     return [time compare:[[NSDate date] formatAs:@"HH:mm"] options:NSCaseInsensitiveSearch] != NSOrderedAscending;
 }

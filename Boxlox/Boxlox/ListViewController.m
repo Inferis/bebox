@@ -38,7 +38,7 @@
     self.tableView.rowHeight = self.tableView.rowHeight/2.0 * 3.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listbackground.png"]];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"listbackground.png"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
 }
 
 - (void)mapView:(MKMapView *)mapView didShowBoxes:(NSArray *)boxes {

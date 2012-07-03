@@ -60,10 +60,10 @@
     [self.mapContainerView addSubview:self.mapViewController.view];
     self.mapViewController.view.frame = self.mapContainerView.bounds;
 
-    UIView* shadowedView = self.listContainerView;
+    UIView* shadowedView = self.mapContainerView;
     shadowedView.layer.masksToBounds = NO;
     shadowedView.layer.shadowRadius = 10;
-    shadowedView.layer.shadowOpacity = 0.5;
+    shadowedView.layer.shadowOpacity = 0.7;
     shadowedView.layer.shadowColor = [[UIColor blackColor] CGColor];
     shadowedView.layer.shadowOffset = CGSizeZero;
     shadowedView.layer.shadowPath = [[UIBezierPath bezierPathWithRect:shadowedView.bounds] CGPath];

@@ -63,20 +63,36 @@
 }
 
 -(void)updateLeftBarButtonItems {
+    UIImage* image, *hiImage;
     if (_following) {
-        
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"compass-on.png"] style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithHex:0x8a5aa5];
+        image = [UIImage imageNamed:@"compass-on.png"];
+        hiImage = [UIImage imageNamed:@"compass-on-hi.png"];
     }
     else {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"compass.png"] style:UIBarButtonItemStyleDone target:self action:@selector(toUserLocation)];
+        image = [UIImage imageNamed:@"compass.png"];
+        hiImage = [UIImage imageNamed:@"compass-hi.png"];
     }
+
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(toUserLocation) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    [button setBackgroundImage:hiImage forState:UIControlStateHighlighted];
+    button.frame = (CGRect) { 0, 0, image.size };
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 - (void)updateRightBarButtonItems {
     if (!IsIPad()) {
+        UIImage* image = [UIImage imageNamed:@"list.png"];
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"list-hi.png"] forState:UIControlStateHighlighted];
+        [button addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = (CGRect) { 0, 0, image.size };
+ 
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
-                                                   [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"list.png"] style:UIBarButtonItemStyleDone target:self.viewDeckController action:@selector(toggleLeftView)],
+                                                   [[UIBarButtonItem alloc] initWithCustomView:button],
                                                    [[UIBarButtonItem alloc] initWithCustomView:_spinner],
                                                    nil];
     }
@@ -97,9 +113,13 @@
         _mapView.userTrackingMode = MKUserTrackingModeNone;
     }
     else {
-        _mapView.centerCoordinate = _mapView.userLocation.location.coordinate;
-        _mapView.userTrackingMode = MKUserTrackingModeFollow;
-        _following = YES;
+        CLLocation* mc = [[CLLocation alloc] initWithLatitude:_mapView.centerCoordinate.latitude longitude:_mapView.centerCoordinate.longitude];
+        CLLocation* uc = _mapView.userLocation.location;
+        _mapView.centerCoordinate = uc.coordinate;
+        if ([mc distanceFromLocation:uc] < 15) {
+            _mapView.userTrackingMode = MKUserTrackingModeFollow;
+            _following = YES;
+        }
     }
     
     [self updateLeftBarButtonItems];
@@ -240,18 +260,21 @@
     [self updateVisibleBoxes];
 }
 
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    PostBoxAnnotationView* annotationView = (PostBoxAnnotationView*)view;
+    PostBoxAnnotation* annotation = annotationView.annotation;
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?ll=%f,%f", annotation.postBox.location.coordinate.latitude, annotation.postBox.location.coordinate.longitude]]];
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if (![annotation isKindOfClass:[PostBoxAnnotation class]])
         return nil;
     
     PostBoxAnnotationView* pin = [[PostBoxAnnotationView alloc] initWithAnnotation:annotation];
-    
-    PostBoxAnnotation* box = (PostBoxAnnotation*)annotation;
     pin.canShowCallout = YES;
     
     UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    [rightButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside];
     pin.rightCalloutAccessoryView = rightButton;
     
     return pin;

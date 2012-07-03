@@ -26,7 +26,7 @@
 }
 
 - (NSString *)subtitle {
-    return _postBox.clearance;
+    return [_postBox todaysClearance];
 }
 
 @end

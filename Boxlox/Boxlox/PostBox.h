@@ -20,6 +20,7 @@
 @property (nonatomic, retain, readonly) NSString* fullAddressNL;
 @property (nonatomic, retain, readonly) NSString* fullAddressFR;
 
+- (NSString*)todaysClearance;
 - (BOOL)hasClearanceScheduledForToday;
 
 @end
