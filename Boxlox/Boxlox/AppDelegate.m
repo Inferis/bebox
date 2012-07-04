@@ -27,6 +27,10 @@
 #endif
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
+        if ([CLLocationManager locationServicesEnabled]) {
+            _boxLocator = [[BoxLocator alloc] init];
+        }
+
         UIViewController* rootViewController;
         
         if (IsIPad()) {
@@ -53,7 +57,6 @@
         // Override point for customization after application launch.
         self.window.backgroundColor = [UIColor whiteColor];
         [self.window makeKeyAndVisible];
-
     });
 }
 
@@ -66,10 +69,7 @@
 {
     [self finishLaunchingWithOptions:(NSDictionary *)launchOptions]; // IOS5 and older
     
-    if ([CLLocationManager locationServicesEnabled]) {
-        _boxLocator = [BoxLocator new];
-    }
-    else {
+    if (![CLLocationManager locationServicesEnabled]) {
         // no location services
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
         hud.mode = MBProgressHUDModeCustomView;

@@ -694,11 +694,11 @@ __typeof__(h) __h = (h);                                    \
 }
 
 - (BOOL)leftControllerIsOpen {
-    return self.leftController && CGRectGetMinX(self.slidingControllerView.frame) < self.referenceBounds.size.width && CGRectGetMinX(self.slidingControllerView.frame) >= self.rightLedge;
+    return self.leftController && CGRectGetMinX(self.slidingControllerView.frame) <= self.referenceBounds.size.width && CGRectGetMinX(self.slidingControllerView.frame) >= self.rightLedge;
 }
 
 - (BOOL)rightControllerIsOpen {
-    return self.rightController && CGRectGetMaxX(self.slidingControllerView.frame) < self.referenceBounds.size.width && CGRectGetMaxX(self.slidingControllerView.frame) >= self.leftLedge;
+    return self.rightController && CGRectGetMaxX(self.slidingControllerView.frame) <= self.referenceBounds.size.width && CGRectGetMaxX(self.slidingControllerView.frame) >= self.leftLedge;
 }
 
 - (void)showCenterView {

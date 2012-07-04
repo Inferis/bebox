@@ -22,5 +22,7 @@
 
 - (NSString*)todaysClearance;
 - (BOOL)hasClearanceScheduledForToday;
+- (CLLocationDistance)distanceFromUserLocation;
+
 
 @end

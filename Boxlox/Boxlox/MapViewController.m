@@ -18,16 +18,16 @@
 #import "BoxMapDelegate.h"
 #import "UIColor+Hex.h"
 
-@interface MapViewController () <MKMapViewDelegate>
+@interface MapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView* mapView;
+@property (nonatomic, weak) IBOutlet UIButton* mapModeButton;
 
 @end
 
 @implementation MapViewController {
     CLLocationCoordinate2D* _currentCenter;
     BOOL _following, _first;
-    UIActivityIndicatorView* _spinner;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +37,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:) name:kBoxLocatorUserPositionChanged object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boxesLocating) name:kBoxLocatorBoxesLocating object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boxesLocated:) name:kBoxLocatorBoxesLocated object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStatusChanged:) name:kBoxLocatorUserPositionStatusChanged object:nil];
     }
     return self;
 }
@@ -44,6 +45,7 @@
 - (UINavigationItem *)navigationItem {
     return [self.parentViewController navigationItem] ? [self.parentViewController navigationItem] : [super navigationItem];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,7 +57,13 @@
     _first = YES;
     _following = NO;
     _mapView.userTrackingMode = MKUserTrackingModeNone;
-
+    
+    UIPanGestureRecognizer* panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
+    panner.delaysTouchesBegan = NO;
+    panner.delaysTouchesEnded = NO;
+    panner.delegate = self;
+    [_mapView addGestureRecognizer:panner];
+    
     if (!IsIPad())
         [self.viewDeckController openLeftViewAnimated:NO];
     
@@ -63,23 +71,27 @@
 }
 
 -(void)updateLeftBarButtonItems {
-    UIImage* image, *hiImage;
-    if (_following) {
-        image = [UIImage imageNamed:@"compass-on.png"];
-        hiImage = [UIImage imageNamed:@"compass-on-hi.png"];
+    if ([BoxLox boxLocator].canLocateUser) {
+        UIImage* image, *hiImage;
+        if (_following) {
+            image = [UIImage imageNamed:@"compass-on.png"];
+            hiImage = [UIImage imageNamed:@"compass-on-hi.png"];
+        }
+        else {
+            image = [UIImage imageNamed:@"compass.png"];
+            hiImage = [UIImage imageNamed:@"compass-hi.png"];
+        }
+        
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(toUserLocation) forControlEvents:UIControlEventTouchUpInside];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setBackgroundImage:hiImage forState:UIControlStateHighlighted];
+        button.frame = (CGRect) { 0, 0, image.size };
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
-    else {
-        image = [UIImage imageNamed:@"compass.png"];
-        hiImage = [UIImage imageNamed:@"compass-hi.png"];
-    }
-
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(toUserLocation) forControlEvents:UIControlEventTouchUpInside];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button setBackgroundImage:hiImage forState:UIControlStateHighlighted];
-    button.frame = (CGRect) { 0, 0, image.size };
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    else
+        self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)updateRightBarButtonItems {
@@ -91,13 +103,7 @@
         [button addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
         button.frame = (CGRect) { 0, 0, image.size };
  
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
-                                                   [[UIBarButtonItem alloc] initWithCustomView:button],
-                                                   [[UIBarButtonItem alloc] initWithCustomView:_spinner],
-                                                   nil];
-    }
-    else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_spinner];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
 }
 
@@ -108,17 +114,23 @@
 }
 
 - (void)toUserLocation {
+    if ([self.viewDeckController leftControllerIsClosed]) {
+        [self.viewDeckController openLeftView];
+    }
+    
     if (_following) {
         _following = NO;
-        _mapView.userTrackingMode = MKUserTrackingModeNone;
+        [self.boxMapDelegate stoppedFollowing];
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     else {
         CLLocation* mc = [[CLLocation alloc] initWithLatitude:_mapView.centerCoordinate.latitude longitude:_mapView.centerCoordinate.longitude];
         CLLocation* uc = _mapView.userLocation.location;
         _mapView.centerCoordinate = uc.coordinate;
-        if ([mc distanceFromLocation:uc] < 15) {
-            _mapView.userTrackingMode = MKUserTrackingModeFollow;
+        if ([mc distanceFromLocation:uc] < 25) {
+            [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
             _following = YES;
+            [self.boxMapDelegate startedFollowing];
         }
     }
     
@@ -127,17 +139,7 @@
 }
 
 - (void)boxesLocating {
-    _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _spinner.hidesWhenStopped = NO;
-    _spinner.layer.opacity = 0;
-    [_spinner startAnimating];
-    
-    [self updateRightBarButtonItems];
-
-    [UIView animateWithDuration:0.15 animations:^{
-        _spinner.layer.opacity = 1;
-    } completion:^(BOOL finished) {
-    }];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)boxesLocated:(NSNotification*)notification {
@@ -188,24 +190,27 @@
             else
                 _mapView.centerCoordinate = _mapView.centerCoordinate;
             
-            [UIView animateWithDuration:0.15 animations:^{
-                _spinner.layer.opacity = 0;
-            } completion:^(BOOL finished) {
-                [_spinner stopAnimating];
-                _spinner = nil;
-                [self updateRightBarButtonItems];
-            }];
-            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self updateVisibleBoxes];
         });
     });
 }
 
 
+- (void)locationStatusChanged:(NSNotification*)notification {
+    if (![BoxLox boxLocator].canLocateUser && _following) {
+        _following = NO;
+        [self.boxMapDelegate stoppedFollowing];
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
+    }
+    
+    [self updateLeftBarButtonItems];
+}
+
 - (void)locationChanged:(NSNotification*)notification {
     CLLocation* location = [(BoxLocator*)[notification object] userLocation];
     
-    if (_following || _first) {
+    if (_first) {
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 150, 150);
         viewRegion = [_mapView regionThatFits:viewRegion];
         [_mapView setRegion:viewRegion animated:YES];
@@ -237,16 +242,28 @@
     }] first];
     
     [_mapView selectAnnotation:selected animated:YES];
-    _mapView.centerCoordinate = box.location.coordinate;
     [self.viewDeckController openLeftView];
+}
+
+#pragma mark - Gesture recognizer
+
+- (void)panned:(UIPanGestureRecognizer*)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        _following = NO;
+        [self.boxMapDelegate stoppedFollowing];
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
+        [self updateLeftBarButtonItems];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 #pragma mark - Map delegate
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     [self updateVisibleBoxes];
-    _mapView.userTrackingMode = MKUserTrackingModeNone;
-    _following = NO;
     [self updateLeftBarButtonItems];
     [self updateRightBarButtonItems];
 }
@@ -309,5 +326,31 @@
         delay += 0.1;
     }
 }
+
+#pragma mark - map mode
+
+- (IBAction)changeMapMode:(id)sender {
+    CGRect originalFrame = _mapModeButton.frame;
+    [UIView animateWithDuration:0.08 animations:^{
+        _mapModeButton.frame = CGRectOffset(originalFrame, 0, -2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.16 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            // move it down
+            _mapModeButton.frame = CGRectOffset(originalFrame, 0, 80);
+        } completion:^(BOOL finished) {
+            _mapView.mapType = _mapView.mapType != MKMapTypeStandard ? MKMapTypeStandard : MKMapTypeHybrid;
+            [_mapModeButton setTitle:_mapView.mapType == MKMapTypeStandard ? @"Standard" : @"Hybrid" forState:UIControlStateNormal];
+            [UIView animateWithDuration:0.16 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                // move it down
+                _mapModeButton.frame = CGRectOffset(originalFrame, 0, -2);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.08 animations:^{
+                    _mapModeButton.frame = originalFrame;
+                }];
+            }];
+        }];
+    }];
+}
+
 
 @end

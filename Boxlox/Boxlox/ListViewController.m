@@ -13,6 +13,7 @@
 #import "PostBox.h"
 #import "UITableViewCell+AutoDequeue.h"
 #import "PostBoxCell.h"
+#import "IIViewDeckController.h"
 
 @interface ListViewController ()
 
@@ -20,29 +21,39 @@
 
 @implementation ListViewController {
     NSArray* _boxes;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    NSTimer* _followingUpdateTimer;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    [[BoxLox boxLocator] addObserver:self forKeyPath:@"userLocation" options:0 context:nil];
+    
     self.tableView.rowHeight = self.tableView.rowHeight/2.0 * 3.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"listbackground.png"] resizableImageWithCapInsets:UIEdgeInsetsZero]];
 }
 
+- (void)dealloc {
+    [[BoxLox boxLocator] removeObserver:self forKeyPath:@"userLocation"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (![keyPath isEqualToString:@"userLocation"])
+        return;
+    
+    [self updateBoxes:_boxes];
+}
+
 - (void)mapView:(MKMapView *)mapView didShowBoxes:(NSArray *)boxes {
+    [self updateBoxes:boxes];
+}
+
+- (void)updateBoxes:(NSArray *)boxes {
     NSArray* oldBoxes = _boxes;
+    CLLocation* ul = [[BoxLox boxLocator] userLocation];
     
     _boxes = [boxes sortedArrayUsingComparator:^NSComparisonResult(PostBox* obj1, PostBox* obj2) {
         BOOL c1 = [obj1 hasClearanceScheduledForToday];
@@ -50,14 +61,18 @@
         if (c1 && !c2) return NSOrderedAscending;
         if (!c1 && c2) return NSOrderedDescending;
         
-        CLLocationDistance d1 = [mapView.userLocation.location distanceFromLocation:obj1.location];
-        CLLocationDistance d2 = [mapView.userLocation.location distanceFromLocation:obj2.location];
-        
-        return d1 == d2 ? NSOrderedSame : d1 < d2 ? NSOrderedAscending : NSOrderedDescending;
+        return [@([obj1 distanceFromUserLocation]) compare:@([obj2 distanceFromUserLocation])];
     }];
+    
+    if ([self.viewDeckController leftControllerIsOpen]) {
+        [self.tableView reloadData];
+        return;
+    }
     
     NSArray* deleted = nil;
     NSArray* inserted = nil;
+    NSMutableArray* moved = nil;
+
     if (IsEmpty(oldBoxes)) {
         inserted = [[_boxes allIndices] map:^id(NSNumber* row) {
             return [NSIndexPath indexPathForRow:[row intValue] inSection:0];
@@ -79,13 +94,36 @@
         }] map:^id(NSNumber* row) {
             return [NSIndexPath indexPathForRow:[row intValue] inSection:0];
         }];
-        
+
+        moved = [NSMutableArray array];
+        uint oldIndex = 0;
+        for (PostBox* ob in oldBoxes) {
+            uint newIndex = [_boxes index:^BOOL(PostBox* nb) {
+                return [ob.id isEqualToString:nb.id];
+            }];
+            
+            if (newIndex != NSNotFound)
+                [moved addObject:@[[NSIndexPath indexPathForRow:oldIndex inSection:0], [NSIndexPath indexPathForRow:newIndex inSection:0]]];
+            oldIndex++;
+        }
     }
     
     [self.tableView beginUpdates];
     if (!IsEmpty(deleted)) [self.tableView deleteRowsAtIndexPaths:deleted withRowAnimation:UITableViewRowAnimationTop];
     if (!IsEmpty(inserted)) [self.tableView insertRowsAtIndexPaths:inserted withRowAnimation:UITableViewRowAnimationBottom];
+    if (!IsEmpty(moved)) {
+        for (NSArray* move in moved) {
+            [self.tableView moveRowAtIndexPath:move[0] toIndexPath:move[1]];
+            [(PostBoxCell*)[self.tableView cellForRowAtIndexPath:move[1]] configure:_boxes[[move[1] row]]];
+        }
+    }
     [self.tableView endUpdates];
+}
+
+- (void)startedFollowing {
+}
+
+- (void)stoppedFollowing {
 }
 
 #pragma mark - Table view data source

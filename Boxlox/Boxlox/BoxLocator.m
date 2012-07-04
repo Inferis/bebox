@@ -17,6 +17,8 @@
 NSString* const kBoxLocatorUserPositionChanged = @"BoxLocatorUserPositionChanged";
 NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
+NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionStatusChanged";
+
 
 @interface BoxLocator () <CLLocationManagerDelegate> {
 }
@@ -51,13 +53,16 @@ NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
         
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        _locationManager.distanceFilter = 250;
+        _locationManager.distanceFilter = 50;
         [_locationManager startUpdatingLocation];
                 
         _lookupQueue = [NSOperationQueue new];
         _lookupQueue.maxConcurrentOperationCount = 1;
         
         _allBoxes = [NSMutableDictionary dictionary];
+        
+        if (!self.canLocateUser)
+            self.centerLocation = [[CLLocation alloc] initWithLatitude:50.85 longitude:4.35]; // brussels
     }
     
     return self;
@@ -112,14 +117,36 @@ NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
 #pragma mark - Location
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    if (_centerLocation) {
-        CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
-        if (distance < 50)
-            return;
+    [self willChangeValueForKey:@"userLocation"];
+    @try {
+        if (_centerLocation) {
+            CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
+            if (distance < 50)
+                return;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
+        self.centerLocation = newLocation;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
-    self.centerLocation = newLocation;
+    @finally {
+        [self didChangeValueForKey:@"userLocation"];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionStatusChanged object:self];
+}
+
+- (BOOL)canLocateUser {
+    return [CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
+    if ([theKey isEqualToString:@"userLocation"]) {
+        return  NO;
+    } else {
+        return [super automaticallyNotifiesObserversForKey:theKey];
+    }
 }
 
 @end
