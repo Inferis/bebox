@@ -108,6 +108,10 @@
 }
 
 - (void)toUserLocation {
+    if ([self.viewDeckController leftControllerIsClosed]) {
+        [self.viewDeckController openLeftView];
+    }
+    
     if (_following) {
         _following = NO;
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
