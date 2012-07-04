@@ -18,7 +18,7 @@
 #import "BoxMapDelegate.h"
 #import "UIColor+Hex.h"
 
-@interface MapViewController () <MKMapViewDelegate>
+@interface MapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView* mapView;
 
@@ -43,6 +43,7 @@
 - (UINavigationItem *)navigationItem {
     return [self.parentViewController navigationItem] ? [self.parentViewController navigationItem] : [super navigationItem];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,7 +55,13 @@
     _first = YES;
     _following = NO;
     _mapView.userTrackingMode = MKUserTrackingModeNone;
-
+    
+    UIPanGestureRecognizer* panner = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
+    panner.delaysTouchesBegan = NO;
+    panner.delaysTouchesEnded = NO;
+    panner.delegate = self;
+    [_mapView addGestureRecognizer:panner];
+    
     if (!IsIPad())
         [self.viewDeckController openLeftViewAnimated:NO];
     
@@ -103,14 +110,14 @@
 - (void)toUserLocation {
     if (_following) {
         _following = NO;
-        _mapView.userTrackingMode = MKUserTrackingModeNone;
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     else {
         CLLocation* mc = [[CLLocation alloc] initWithLatitude:_mapView.centerCoordinate.latitude longitude:_mapView.centerCoordinate.longitude];
         CLLocation* uc = _mapView.userLocation.location;
         _mapView.centerCoordinate = uc.coordinate;
-        if ([mc distanceFromLocation:uc] < 15) {
-            _mapView.userTrackingMode = MKUserTrackingModeFollow;
+        if ([mc distanceFromLocation:uc] < 25) {
+            [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
             _following = YES;
         }
     }
@@ -181,7 +188,7 @@
 - (void)locationChanged:(NSNotification*)notification {
     CLLocation* location = [(BoxLocator*)[notification object] userLocation];
     
-    if (_following || _first) {
+    if (_first) {
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 150, 150);
         viewRegion = [_mapView regionThatFits:viewRegion];
         [_mapView setRegion:viewRegion animated:YES];
@@ -217,12 +224,24 @@
     [self.viewDeckController openLeftView];
 }
 
+#pragma mark - Gesture recognizer
+
+- (void)panned:(UIPanGestureRecognizer*)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        _following = NO;
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
+        [self updateLeftBarButtonItems];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 #pragma mark - Map delegate
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     [self updateVisibleBoxes];
-    _mapView.userTrackingMode = MKUserTrackingModeNone;
-    _following = NO;
     [self updateLeftBarButtonItems];
     [self updateRightBarButtonItems];
 }
