@@ -12,6 +12,7 @@
 extern NSString* const kBoxLocatorUserPositionChanged;
 extern NSString* const kBoxLocatorBoxesLocated;
 extern NSString* const kBoxLocatorBoxesLocating;
+extern NSString* const kBoxLocatorUserPositionStatusChanged;
 
 @interface BoxLocator : NSObject
 
@@ -19,6 +20,7 @@ extern NSString* const kBoxLocatorBoxesLocating;
 @property (nonatomic, retain) CLLocation* centerLocation;
 @property (nonatomic, readonly, retain) NSArray* locatedBoxes;
 @property (nonatomic, readonly, retain) NSArray* allBoxes;
+@property (nonatomic, readonly, assign) BOOL canLocateUser;
 
 - (void)locateBoxesFor:(CLLocationCoordinate2D)coordinate;
 

@@ -17,6 +17,8 @@
 NSString* const kBoxLocatorUserPositionChanged = @"BoxLocatorUserPositionChanged";
 NSString* const kBoxLocatorBoxesLocated = @"BoxLocatorBoxesLocated";
 NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
+NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionStatusChanged";
+
 
 @interface BoxLocator () <CLLocationManagerDelegate> {
 }
@@ -58,6 +60,9 @@ NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
         _lookupQueue.maxConcurrentOperationCount = 1;
         
         _allBoxes = [NSMutableDictionary dictionary];
+        
+        if (!self.canLocateUser)
+            self.centerLocation = [[CLLocation alloc] initWithLatitude:50.85 longitude:4.35]; // brussels
     }
     
     return self;
@@ -122,4 +127,11 @@ NSString* const kBoxLocatorBoxesLocating = @"BoxLocatorBoxesLocating";
     self.centerLocation = newLocation;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionStatusChanged object:self];
+}
+
+- (BOOL)canLocateUser {
+    return [CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized;
+}
 @end

@@ -36,6 +36,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:) name:kBoxLocatorUserPositionChanged object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boxesLocating) name:kBoxLocatorBoxesLocating object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boxesLocated:) name:kBoxLocatorBoxesLocated object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStatusChanged:) name:kBoxLocatorUserPositionStatusChanged object:nil];
     }
     return self;
 }
@@ -69,23 +70,27 @@
 }
 
 -(void)updateLeftBarButtonItems {
-    UIImage* image, *hiImage;
-    if (_following) {
-        image = [UIImage imageNamed:@"compass-on.png"];
-        hiImage = [UIImage imageNamed:@"compass-on-hi.png"];
+    if ([BoxLox boxLocator].canLocateUser) {
+        UIImage* image, *hiImage;
+        if (_following) {
+            image = [UIImage imageNamed:@"compass-on.png"];
+            hiImage = [UIImage imageNamed:@"compass-on-hi.png"];
+        }
+        else {
+            image = [UIImage imageNamed:@"compass.png"];
+            hiImage = [UIImage imageNamed:@"compass-hi.png"];
+        }
+        
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(toUserLocation) forControlEvents:UIControlEventTouchUpInside];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setBackgroundImage:hiImage forState:UIControlStateHighlighted];
+        button.frame = (CGRect) { 0, 0, image.size };
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
-    else {
-        image = [UIImage imageNamed:@"compass.png"];
-        hiImage = [UIImage imageNamed:@"compass-hi.png"];
-    }
-
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(toUserLocation) forControlEvents:UIControlEventTouchUpInside];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button setBackgroundImage:hiImage forState:UIControlStateHighlighted];
-    button.frame = (CGRect) { 0, 0, image.size };
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    else
+        self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)updateRightBarButtonItems {
@@ -188,6 +193,15 @@
     });
 }
 
+
+- (void)locationStatusChanged:(NSNotification*)notification {
+    if (![BoxLox boxLocator].canLocateUser && _following) {
+        _following = NO;
+        [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
+    }
+    
+    [self updateLeftBarButtonItems];
+}
 
 - (void)locationChanged:(NSNotification*)notification {
     CLLocation* location = [(BoxLocator*)[notification object] userLocation];
