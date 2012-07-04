@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E20084CA15A0FDF500705840 /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20084C915A0FDF500705840 /* title@2x.png */; };
 		E20F6D5D15A46ADA00F9FFAB /* RK_gpx+_2012-01-30_1055PM.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E20F6D5C15A46ADA00F9FFAB /* RK_gpx+_2012-01-30_1055PM.gpx */; };
+		E20F6D6315A488B100F9FFAB /* maptoggle-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20F6D5F15A488B100F9FFAB /* maptoggle-hi@2x.png */; };
+		E20F6D6415A488B100F9FFAB /* maptoggle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20F6D6015A488B100F9FFAB /* maptoggle@2x.png */; };
+		E20F6D6515A488B100F9FFAB /* compass-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20F6D6115A488B100F9FFAB /* compass-hi@2x.png */; };
+		E20F6D6615A488B100F9FFAB /* compass-on-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E20F6D6215A488B100F9FFAB /* compass-on-hi@2x.png */; };
 		E21EADBF15A0DD570011158E /* postbox-closed.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBB15A0DD570011158E /* postbox-closed.png */; };
 		E21EADC015A0DD570011158E /* postbox-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBC15A0DD570011158E /* postbox-closed@2x.png */; };
 		E21EADC115A0DD570011158E /* postbox-open.png in Resources */ = {isa = PBXBuildFile; fileRef = E21EADBD15A0DD570011158E /* postbox-open.png */; };
@@ -90,6 +94,10 @@
 		E20084C915A0FDF500705840 /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		E20084D015A1D4CE00705840 /* BoxMapDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxMapDelegate.h; sourceTree = "<group>"; };
 		E20F6D5C15A46ADA00F9FFAB /* RK_gpx+_2012-01-30_1055PM.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "RK_gpx+_2012-01-30_1055PM.gpx"; sourceTree = "<group>"; };
+		E20F6D5F15A488B100F9FFAB /* maptoggle-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptoggle-hi@2x.png"; sourceTree = "<group>"; };
+		E20F6D6015A488B100F9FFAB /* maptoggle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptoggle@2x.png"; sourceTree = "<group>"; };
+		E20F6D6115A488B100F9FFAB /* compass-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-hi@2x.png"; sourceTree = "<group>"; };
+		E20F6D6215A488B100F9FFAB /* compass-on-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-on-hi@2x.png"; sourceTree = "<group>"; };
 		E21EADBB15A0DD570011158E /* postbox-closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed.png"; sourceTree = "<group>"; };
 		E21EADBC15A0DD570011158E /* postbox-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-closed@2x.png"; sourceTree = "<group>"; };
 		E21EADBD15A0DD570011158E /* postbox-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-open.png"; sourceTree = "<group>"; };
@@ -239,6 +247,10 @@
 		E21EADBA15A0DD570011158E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E20F6D5F15A488B100F9FFAB /* maptoggle-hi@2x.png */,
+				E20F6D6015A488B100F9FFAB /* maptoggle@2x.png */,
+				E20F6D6115A488B100F9FFAB /* compass-hi@2x.png */,
+				E20F6D6215A488B100F9FFAB /* compass-on-hi@2x.png */,
 				E27B83D715A383F60028E1AC /* list-hi@2x.png */,
 				E27B83D515A34FF40028E1AC /* listbackground@2x.png */,
 				E27B83D315A3254F0028E1AC /* compass-on@2x.png */,
@@ -567,6 +579,10 @@
 				E2E674A615A39C0E00F8654A /* Default.png in Resources */,
 				E2E674A815A39C1000F8654A /* Default@2x.png in Resources */,
 				E20F6D5D15A46ADA00F9FFAB /* RK_gpx+_2012-01-30_1055PM.gpx in Resources */,
+				E20F6D6315A488B100F9FFAB /* maptoggle-hi@2x.png in Resources */,
+				E20F6D6415A488B100F9FFAB /* maptoggle@2x.png in Resources */,
+				E20F6D6515A488B100F9FFAB /* compass-hi@2x.png in Resources */,
+				E20F6D6615A488B100F9FFAB /* compass-on-hi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

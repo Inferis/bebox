@@ -21,6 +21,7 @@
 @interface MapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView* mapView;
+@property (nonatomic, weak) IBOutlet UIButton* mapModeButton;
 
 @end
 
@@ -321,5 +322,31 @@
         delay += 0.1;
     }
 }
+
+#pragma mark - map mode
+
+- (IBAction)changeMapMode:(id)sender {
+    CGRect originalFrame = _mapModeButton.frame;
+    [UIView animateWithDuration:0.08 animations:^{
+        _mapModeButton.frame = CGRectOffset(originalFrame, 0, -2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.16 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            // move it down
+            _mapModeButton.frame = CGRectOffset(originalFrame, 0, 80);
+        } completion:^(BOOL finished) {
+            _mapView.mapType = _mapView.mapType != MKMapTypeStandard ? MKMapTypeStandard : MKMapTypeHybrid;
+            [_mapModeButton setTitle:_mapView.mapType == MKMapTypeStandard ? @"Standard" : @"Hybrid" forState:UIControlStateNormal];
+            [UIView animateWithDuration:0.16 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                // move it down
+                _mapModeButton.frame = CGRectOffset(originalFrame, 0, -2);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.08 animations:^{
+                    _mapModeButton.frame = originalFrame;
+                }];
+            }];
+        }];
+    }];
+}
+
 
 @end
