@@ -27,7 +27,6 @@
 @implementation MapViewController {
     CLLocationCoordinate2D* _currentCenter;
     BOOL _following, _first;
-    UIActivityIndicatorView* _spinner;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -91,13 +90,7 @@
         [button addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
         button.frame = (CGRect) { 0, 0, image.size };
  
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
-                                                   [[UIBarButtonItem alloc] initWithCustomView:button],
-                                                   [[UIBarButtonItem alloc] initWithCustomView:_spinner],
-                                                   nil];
-    }
-    else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_spinner];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
 }
 
@@ -127,17 +120,7 @@
 }
 
 - (void)boxesLocating {
-    _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    _spinner.hidesWhenStopped = NO;
-    _spinner.layer.opacity = 0;
-    [_spinner startAnimating];
-    
-    [self updateRightBarButtonItems];
-
-    [UIView animateWithDuration:0.15 animations:^{
-        _spinner.layer.opacity = 1;
-    } completion:^(BOOL finished) {
-    }];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)boxesLocated:(NSNotification*)notification {
@@ -188,14 +171,7 @@
             else
                 _mapView.centerCoordinate = _mapView.centerCoordinate;
             
-            [UIView animateWithDuration:0.15 animations:^{
-                _spinner.layer.opacity = 0;
-            } completion:^(BOOL finished) {
-                [_spinner stopAnimating];
-                _spinner = nil;
-                [self updateRightBarButtonItems];
-            }];
-            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [self updateVisibleBoxes];
         });
     });
