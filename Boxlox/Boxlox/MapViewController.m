@@ -224,7 +224,6 @@
     }] first];
     
     [_mapView selectAnnotation:selected animated:YES];
-    _mapView.centerCoordinate = box.location.coordinate;
     [self.viewDeckController openLeftView];
 }
 
