@@ -53,7 +53,7 @@ NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionS
         
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        _locationManager.distanceFilter = 250;
+        _locationManager.distanceFilter = 50;
         [_locationManager startUpdatingLocation];
                 
         _lookupQueue = [NSOperationQueue new];
@@ -117,14 +117,20 @@ NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionS
 #pragma mark - Location
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    if (_centerLocation) {
-        CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
-        if (distance < 50)
-            return;
+    [self willChangeValueForKey:@"userLocation"];
+    @try {
+        if (_centerLocation) {
+            CLLocationDistance distance = [newLocation distanceFromLocation:_centerLocation];
+            if (distance < 50)
+                return;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
+        self.centerLocation = newLocation;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBoxLocatorUserPositionChanged object:self];
-    self.centerLocation = newLocation;
+    @finally {
+        [self didChangeValueForKey:@"userLocation"];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -134,4 +140,13 @@ NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionS
 - (BOOL)canLocateUser {
     return [CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized;
 }
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
+    if ([theKey isEqualToString:@"userLocation"]) {
+        return  NO;
+    } else {
+        return [super automaticallyNotifiesObserversForKey:theKey];
+    }
+}
+
 @end

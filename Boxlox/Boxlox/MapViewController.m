@@ -120,6 +120,7 @@
     
     if (_following) {
         _following = NO;
+        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     else {
@@ -129,6 +130,7 @@
         if ([mc distanceFromLocation:uc] < 25) {
             [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
             _following = YES;
+            [self.boxMapDelegate startedFollowing];
         }
     }
     
@@ -198,6 +200,7 @@
 - (void)locationStatusChanged:(NSNotification*)notification {
     if (![BoxLox boxLocator].canLocateUser && _following) {
         _following = NO;
+        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     
@@ -247,6 +250,7 @@
 - (void)panned:(UIPanGestureRecognizer*)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         _following = NO;
+        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
         [self updateLeftBarButtonItems];
     }

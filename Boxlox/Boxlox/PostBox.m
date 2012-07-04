@@ -43,4 +43,11 @@
     return [time compare:[[NSDate date] formatAs:@"HH:mm"] options:NSCaseInsensitiveSearch] != NSOrderedAscending;
 }
 
+- (CLLocationDistance)distanceFromUserLocation {
+    return [self.location distanceFromLocation:[BoxLox boxLocator].userLocation];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ %@ %0.2fm", self.fullAddressNL, self.location, [self distanceFromUserLocation]];
+}
 @end

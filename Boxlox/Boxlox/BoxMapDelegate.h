@@ -14,6 +14,8 @@
 @protocol BoxMapDelegate <NSObject>
 
 - (void)mapView:(MKMapView*)mapView didShowBoxes:(NSArray*)boxes;
+- (void)startedFollowing;
+- (void)stoppedFollowing;
 
 @end
 

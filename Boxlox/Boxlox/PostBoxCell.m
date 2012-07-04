@@ -9,7 +9,10 @@
 #import "PostBoxCell.h"
 #import "UIColor+Hex.h"
 
-@implementation PostBoxCell
+@implementation PostBoxCell {
+    UILabel* _distanceLabel;
+    CGSize _distanceLabelSize;
+}
 
 - (id)initWithReuseIdentifier:(NSString*)identifier {
     if ((self = [self initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier])) {
@@ -21,6 +24,14 @@
         self.textLabel.numberOfLines = 2;
         self.detailTextLabel.opaque = NO;
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        
+        _distanceLabel = [[UILabel alloc] init];
+        _distanceLabel.font = [UIFont systemFontOfSize:12];
+        _distanceLabel.textColor = [UIColor colorWithHex:0xcccccc];
+        _distanceLabel.backgroundColor = [UIColor colorWithHex:0x999999];
+        _distanceLabel.layer.cornerRadius = 3;
+        _distanceLabel.textAlignment = UITextAlignmentCenter;
+        [[self contentView] addSubview:_distanceLabel];
 
         self.imageView.highlightedImage = [UIImage imageNamed:@"postbox-hilite.png"];
     }
@@ -31,6 +42,26 @@
     self.textLabel.text = [NSString stringWithFormat:@"%@\n%@", box.addressNL[0], box.addressNL[1]];
     self.detailTextLabel.text = box.clearance;
     self.imageView.image = [UIImage imageNamed:[box hasClearanceScheduledForToday] ? @"postbox-open.png" : @"postbox-closed.png"];
+    
+    if ([BoxLox boxLocator].canLocateUser) {
+        CLLocationDistance distance = [box.location distanceFromLocation:[BoxLox boxLocator].userLocation];
+        if (distance >= 1000) {
+            _distanceLabel.text = [NSString stringWithFormat:@"%0.1fkm", distance/1000.0];
+        }
+        else {
+            _distanceLabel.text = [NSString stringWithFormat:@"%0.fm", distance];
+        }
+        _distanceLabelSize = [_distanceLabel.text sizeWithFont:_distanceLabel.font];
+    }
+    else
+        _distanceLabelSize = CGSizeZero;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    _distanceLabel.frame = (CGRect) { CGRectGetMaxX(self.contentView.bounds) - _distanceLabelSize.width - 10, self.detailTextLabel.frame.origin.y, _distanceLabelSize };
+    _distanceLabel.frame = CGRectInset(_distanceLabel.frame, -2, -1);
 }
 
 + (Class)layerClass {
