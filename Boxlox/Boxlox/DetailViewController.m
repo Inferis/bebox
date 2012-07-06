@@ -21,7 +21,7 @@
 }
 
 - (CGSize)contentSizeForViewInPopover {
-    return (CGSize) { 400, 400 };
+    return (CGSize) { 320, 400 };
 }
 
 - (id)initWithPostBox:(PostBox*)postbox
@@ -114,7 +114,7 @@
             ButtonCell* cell = [ButtonCell tableViewAutoDequeueCell:self.tableView];
             [cell configureWithText:@"Get Directions" action:^{
                 CLLocation* ul = [[BoxLox boxLocator] userLocation];
-                NSString* url = [NSString stringWithFormat:@"maps://maps?dummy=1&saddr=%f,%f&daddr=%f,%f&dirflg=%@", ul.coordinate.latitude, ul.coordinate.longitude, _postbox.location.coordinate.latitude, _postbox.location.coordinate.longitude, [_postbox distanceFromUserLocation] > 500 ? @"h" : @"w"];
+                NSString* url = [NSString stringWithFormat:@"maps://maps?dummy=1&saddr=%f,%f&daddr=%f,%f&dirflg=%@", ul.coordinate.latitude, ul.coordinate.longitude, _postbox.location.coordinate.latitude, _postbox.location.coordinate.longitude, [_postbox distanceFromUserLocation] > 1000 ? @"h" : @"w"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
             }];
             return cell;
