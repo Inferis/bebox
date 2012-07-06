@@ -69,7 +69,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"Address";
+            return @"Location";
         case 1:
             return @"Last Clearance";
     }
@@ -79,7 +79,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath; {
     if (indexPath.section >= 2)
-        return 40;
+        return 38;
     
     return tableView.rowHeight;
 }
@@ -112,7 +112,7 @@
 
         case 3: {
             ButtonCell* cell = [ButtonCell tableViewAutoDequeueCell:self.tableView];
-            [cell configureWithText:@"Directions to..." action:^{
+            [cell configureWithText:@"Get Directions" action:^{
                 CLLocation* ul = [[BoxLox boxLocator] userLocation];
                 NSString* url = [NSString stringWithFormat:@"maps://maps?dummy=1&saddr=%f,%f&daddr=%f,%f&dirflg=%@", ul.coordinate.latitude, ul.coordinate.longitude, _postbox.location.coordinate.latitude, _postbox.location.coordinate.longitude, [_postbox distanceFromUserLocation] > 500 ? @"h" : @"w"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
