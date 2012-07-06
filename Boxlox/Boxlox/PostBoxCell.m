@@ -8,6 +8,7 @@
 
 #import "PostBoxCell.h"
 #import "UIColor+Hex.h"
+#import "NSDate+Extensions.h"
 
 @implementation PostBoxCell {
     UILabel* _distanceLabel;
@@ -16,6 +17,7 @@
 
 - (id)initWithReuseIdentifier:(NSString*)identifier {
     if ((self = [self initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier])) {
+        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         CAGradientLayer *gradient = (CAGradientLayer*)self.layer;
         gradient.colors = @[(id)[[UIColor whiteColor] CGColor], (id)[[UIColor colorWithHex:0xf2f2f2] CGColor], (id)[[UIColor colorWithHex:0xcccccc] CGColor]];
         gradient.locations = @[@0, @0.99, @1];
@@ -27,8 +29,8 @@
         
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.font = [UIFont systemFontOfSize:12];
-        _distanceLabel.textColor = [UIColor colorWithHex:0xcccccc];
-        _distanceLabel.backgroundColor = [UIColor colorWithHex:0x999999];
+        _distanceLabel.textColor = [UIColor colorWithHex:0xdddddd];
+        _distanceLabel.backgroundColor = [UIColor colorWithHex:0x888888];
         _distanceLabel.layer.cornerRadius = 3;
         _distanceLabel.textAlignment = UITextAlignmentCenter;
         [[self contentView] addSubview:_distanceLabel];
@@ -40,7 +42,16 @@
 
 - (void)configure:(PostBox*)box {
     self.textLabel.text = [NSString stringWithFormat:@"%@\n%@", box.addressNL[0], box.addressNL[1]];
-    self.detailTextLabel.text = box.clearance;
+
+    int dayOfWeek = [[NSDate date] dayOfWeek];
+    if (dayOfWeek == 1)
+        self.detailTextLabel.text = @"No clearance today";
+    else {
+        if ([box hasClearanceScheduledForToday])
+            self.detailTextLabel.text = [NSString stringWithFormat:@"Last clearance: %@", [box todaysClearance]];
+        self.detailTextLabel.text = [NSString stringWithFormat:@"Last cleared: %@", [box todaysClearance]];
+    }
+    
     self.imageView.image = [UIImage imageNamed:[box hasClearanceScheduledForToday] ? @"postbox-open.png" : @"postbox-closed.png"];
     
     if ([BoxLox boxLocator].canLocateUser) {

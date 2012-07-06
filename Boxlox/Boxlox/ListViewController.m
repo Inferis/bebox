@@ -53,7 +53,6 @@
 
 - (void)updateBoxes:(NSArray *)boxes {
     NSArray* oldBoxes = _boxes;
-    CLLocation* ul = [[BoxLox boxLocator] userLocation];
     
     _boxes = [boxes sortedArrayUsingComparator:^NSComparisonResult(PostBox* obj1, PostBox* obj2) {
         BOOL c1 = [obj1 hasClearanceScheduledForToday];
@@ -120,11 +119,6 @@
     [self.tableView endUpdates];
 }
 
-- (void)startedFollowing {
-}
-
-- (void)stoppedFollowing {
-}
 
 #pragma mark - Table view data source
 
@@ -148,11 +142,18 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self.boxSelectionDelegate showBoxDetails:_boxes[indexPath.row] from:nil];
+}
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.boxSelectionDelegate selectBox:_boxes[indexPath.row]];
 }
+
+
 
 @end

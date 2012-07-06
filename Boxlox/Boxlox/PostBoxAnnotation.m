@@ -7,6 +7,7 @@
 //
 
 #import "PostBoxAnnotation.h"
+#import "NSDate+Extensions.h"
 
 @implementation PostBoxAnnotation
 
@@ -26,7 +27,13 @@
 }
 
 - (NSString *)subtitle {
-    return [_postBox todaysClearance];
+    int dayOfWeek = [[NSDate date] dayOfWeek];
+    if (dayOfWeek == 1)
+        return @"No clearance today";
+    
+    if ([_postBox hasClearanceScheduledForToday])
+        return [NSString stringWithFormat:@"Last clearance at %@", [_postBox todaysClearance]];
+    return [NSString stringWithFormat:@"Last cleared at %@", [_postBox todaysClearance]];
 }
 
 @end
