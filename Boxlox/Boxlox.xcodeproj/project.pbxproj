@@ -27,6 +27,20 @@
 		E239FAFD15A63D0C00C4C148 /* detail-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E239FAFC15A63D0B00C4C148 /* detail-button@2x.png */; };
 		E23C5F6D159F193E0061C5BF /* PostBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F6C159F193E0061C5BF /* PostBox.m */; };
 		E23C5F71159F1B740061C5BF /* PostBoxAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */; };
+		E2404BCD15A6E3980019383E /* compass-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC115A6E3980019383E /* compass-hi.png */; };
+		E2404BCE15A6E3980019383E /* compass-on-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC215A6E3980019383E /* compass-on-hi.png */; };
+		E2404BCF15A6E3980019383E /* compass-on.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC315A6E3980019383E /* compass-on.png */; };
+		E2404BD015A6E3980019383E /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC415A6E3980019383E /* compass.png */; };
+		E2404BD115A6E3980019383E /* titlebg.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC515A6E3980019383E /* titlebg.png */; };
+		E2404BD215A6E3980019383E /* list-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC615A6E3980019383E /* list-hi.png */; };
+		E2404BD315A6E3980019383E /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC715A6E3980019383E /* list.png */; };
+		E2404BD415A6E3980019383E /* listbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC815A6E3980019383E /* listbackground.png */; };
+		E2404BD515A6E3980019383E /* maptoggle-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BC915A6E3980019383E /* maptoggle-hi.png */; };
+		E2404BD615A6E3980019383E /* maptoggle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BCA15A6E3980019383E /* maptoggle.png */; };
+		E2404BD715A6E3980019383E /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BCB15A6E3980019383E /* title.png */; };
+		E2404BD815A6E3980019383E /* detail-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BCC15A6E3980019383E /* detail-button.png */; };
+		E2404BDC15A6E7CD0019383E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BDA15A6E7CD0019383E /* back.png */; };
+		E2404BDD15A6E7CD0019383E /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2404BDB15A6E7CD0019383E /* back@2x.png */; };
 		E27B83CD15A31A8B0028E1AC /* titlebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83CC15A31A8B0028E1AC /* titlebg@2x.png */; };
 		E27B83D015A31F800028E1AC /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83CF15A31F800028E1AC /* list@2x.png */; };
 		E27B83D215A3222C0028E1AC /* compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E27B83D115A3222C0028E1AC /* compass@2x.png */; };
@@ -126,6 +140,20 @@
 		E23C5F6C159F193E0061C5BF /* PostBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBox.m; sourceTree = "<group>"; };
 		E23C5F6F159F1B740061C5BF /* PostBoxAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBoxAnnotation.h; sourceTree = "<group>"; };
 		E23C5F70159F1B740061C5BF /* PostBoxAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBoxAnnotation.m; sourceTree = "<group>"; };
+		E2404BC115A6E3980019383E /* compass-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-hi.png"; sourceTree = "<group>"; };
+		E2404BC215A6E3980019383E /* compass-on-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-on-hi.png"; sourceTree = "<group>"; };
+		E2404BC315A6E3980019383E /* compass-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-on.png"; sourceTree = "<group>"; };
+		E2404BC415A6E3980019383E /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
+		E2404BC515A6E3980019383E /* titlebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlebg.png; sourceTree = "<group>"; };
+		E2404BC615A6E3980019383E /* list-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-hi.png"; sourceTree = "<group>"; };
+		E2404BC715A6E3980019383E /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		E2404BC815A6E3980019383E /* listbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listbackground.png; sourceTree = "<group>"; };
+		E2404BC915A6E3980019383E /* maptoggle-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptoggle-hi.png"; sourceTree = "<group>"; };
+		E2404BCA15A6E3980019383E /* maptoggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maptoggle.png; sourceTree = "<group>"; };
+		E2404BCB15A6E3980019383E /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		E2404BCC15A6E3980019383E /* detail-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail-button.png"; sourceTree = "<group>"; };
+		E2404BDA15A6E7CD0019383E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		E2404BDB15A6E7CD0019383E /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		E27B83CC15A31A8B0028E1AC /* titlebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titlebg@2x.png"; sourceTree = "<group>"; };
 		E27B83CF15A31F800028E1AC /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
 		E27B83D115A3222C0028E1AC /* compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass@2x.png"; sourceTree = "<group>"; };
@@ -260,6 +288,20 @@
 		E21EADBA15A0DD570011158E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E2404BDA15A6E7CD0019383E /* back.png */,
+				E2404BDB15A6E7CD0019383E /* back@2x.png */,
+				E2404BC115A6E3980019383E /* compass-hi.png */,
+				E2404BC215A6E3980019383E /* compass-on-hi.png */,
+				E2404BC315A6E3980019383E /* compass-on.png */,
+				E2404BC415A6E3980019383E /* compass.png */,
+				E2404BC515A6E3980019383E /* titlebg.png */,
+				E2404BC615A6E3980019383E /* list-hi.png */,
+				E2404BC715A6E3980019383E /* list.png */,
+				E2404BC815A6E3980019383E /* listbackground.png */,
+				E2404BC915A6E3980019383E /* maptoggle-hi.png */,
+				E2404BCA15A6E3980019383E /* maptoggle.png */,
+				E2404BCB15A6E3980019383E /* title.png */,
+				E2404BCC15A6E3980019383E /* detail-button.png */,
 				E239FAFC15A63D0B00C4C148 /* detail-button@2x.png */,
 				E20F6D5F15A488B100F9FFAB /* maptoggle-hi@2x.png */,
 				E20F6D6015A488B100F9FFAB /* maptoggle@2x.png */,
@@ -606,6 +648,20 @@
 				E20F6D6615A488B100F9FFAB /* compass-on-hi@2x.png in Resources */,
 				E297987315A5BDF200E72EBE /* DetailViewController.xib in Resources */,
 				E239FAFD15A63D0C00C4C148 /* detail-button@2x.png in Resources */,
+				E2404BCD15A6E3980019383E /* compass-hi.png in Resources */,
+				E2404BCE15A6E3980019383E /* compass-on-hi.png in Resources */,
+				E2404BCF15A6E3980019383E /* compass-on.png in Resources */,
+				E2404BD015A6E3980019383E /* compass.png in Resources */,
+				E2404BD115A6E3980019383E /* titlebg.png in Resources */,
+				E2404BD215A6E3980019383E /* list-hi.png in Resources */,
+				E2404BD315A6E3980019383E /* list.png in Resources */,
+				E2404BD415A6E3980019383E /* listbackground.png in Resources */,
+				E2404BD515A6E3980019383E /* maptoggle-hi.png in Resources */,
+				E2404BD615A6E3980019383E /* maptoggle.png in Resources */,
+				E2404BD715A6E3980019383E /* title.png in Resources */,
+				E2404BD815A6E3980019383E /* detail-button.png in Resources */,
+				E2404BDC15A6E7CD0019383E /* back.png in Resources */,
+				E2404BDD15A6E7CD0019383E /* back@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
