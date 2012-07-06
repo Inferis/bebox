@@ -120,11 +120,6 @@
     [self.tableView endUpdates];
 }
 
-- (void)startedFollowing {
-}
-
-- (void)stoppedFollowing {
-}
 
 #pragma mark - Table view data source
 
@@ -154,5 +149,7 @@
 {
     [self.boxSelectionDelegate selectBox:_boxes[indexPath.row]];
 }
+
+
 
 @end

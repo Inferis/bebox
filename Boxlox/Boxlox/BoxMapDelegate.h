@@ -14,13 +14,12 @@
 @protocol BoxMapDelegate <NSObject>
 
 - (void)mapView:(MKMapView*)mapView didShowBoxes:(NSArray*)boxes;
-- (void)startedFollowing;
-- (void)stoppedFollowing;
 
 @end
 
 @protocol BoxSelectionDelegate <NSObject>
 
 - (void)selectBox:(PostBox*)box;
+- (void)showBoxDetails:(PostBox*)box from:(UIView*)control;
 
 @end

@@ -120,7 +120,6 @@
     
     if (_following) {
         _following = NO;
-        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     else {
@@ -130,7 +129,6 @@
         if ([mc distanceFromLocation:uc] < 25) {
             [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
             _following = YES;
-            [self.boxMapDelegate startedFollowing];
         }
     }
     
@@ -200,7 +198,6 @@
 - (void)locationStatusChanged:(NSNotification*)notification {
     if (![BoxLox boxLocator].canLocateUser && _following) {
         _following = NO;
-        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
     
@@ -245,12 +242,14 @@
     [self.viewDeckController openLeftView];
 }
 
+- (void)showBoxDetails:(PostBox *)box from:(UIView*)control {
+}
+
 #pragma mark - Gesture recognizer
 
 - (void)panned:(UIPanGestureRecognizer*)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         _following = NO;
-        [self.boxMapDelegate stoppedFollowing];
         [_mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
         [self updateLeftBarButtonItems];
     }
@@ -278,10 +277,7 @@
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    PostBoxAnnotationView* annotationView = (PostBoxAnnotationView*)view;
-    PostBoxAnnotation* annotation = annotationView.annotation;
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?ll=%f,%f", annotation.postBox.location.coordinate.latitude, annotation.postBox.location.coordinate.longitude]]];
+    [self showBoxDetails:((PostBoxAnnotation*)view.annotation).postBox from:control];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
