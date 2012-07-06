@@ -53,7 +53,6 @@
 
 - (void)updateBoxes:(NSArray *)boxes {
     NSArray* oldBoxes = _boxes;
-    CLLocation* ul = [[BoxLox boxLocator] userLocation];
     
     _boxes = [boxes sortedArrayUsingComparator:^NSComparisonResult(PostBox* obj1, PostBox* obj2) {
         BOOL c1 = [obj1 hasClearanceScheduledForToday];
@@ -142,6 +141,11 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self.boxSelectionDelegate showBoxDetails:_boxes[indexPath.row] from:nil];
+}
+
 
 #pragma mark - Table view delegate
 
