@@ -17,8 +17,9 @@
 #import "PostBoxAnnotationView.h"
 #import "BoxMapDelegate.h"
 #import "UIColor+Hex.h"
+#import "DetailViewController.h"
 
-@interface MapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate>
+@interface MapViewController () <MKMapViewDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView* mapView;
 @property (nonatomic, weak) IBOutlet UIButton* mapModeButton;
@@ -28,6 +29,7 @@
 @implementation MapViewController {
     CLLocationCoordinate2D* _currentCenter;
     BOOL _following, _first;
+    UIPopoverController* _detailsPopupController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -243,6 +245,31 @@
 }
 
 - (void)showBoxDetails:(PostBox *)box from:(UIView*)control {
+    DetailViewController* detailsController = [[DetailViewController alloc] initWithPostBox:box];
+    
+    if (IsIPad()) {
+        if (!control) {
+            PostBoxAnnotation* found = [[[_mapView.annotations ofClass:[PostBoxAnnotation class]] select:^BOOL(PostBoxAnnotation* annotation) {
+                return [annotation.postBox.id isEqualToString:box.id];
+            }] first];
+            [_mapView selectAnnotation:found animated:NO];
+            PostBoxAnnotationView* annotationView = [_mapView viewForAnnotation:found];
+            UIView* calloutView = [annotationView.subviews first];
+            control = [[calloutView.subviews ofClass:[UIButton class]] first];
+        }
+        
+        [_detailsPopupController dismissPopoverAnimated:YES];
+        _detailsPopupController.delegate = self;
+        _detailsPopupController = [[UIPopoverController alloc] initWithContentViewController:detailsController];
+        CGRect rect = [self.view convertRect:control.bounds fromView:control];
+        [_detailsPopupController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown | UIPopoverArrowDirectionUp | UIPopoverArrowDirectionLeft animated:YES];
+    }
+    else {
+        [self.navigationController pushViewController:detailsController animated:YES];
+        dispatch_delayed(0.3, ^{
+            [self.viewDeckController openLeftViewAnimated:NO];
+        });
+    }
 }
 
 #pragma mark - Gesture recognizer
@@ -348,5 +375,10 @@
     }];
 }
 
+#pragma mark - popover
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    _detailsPopupController = nil;
+}
 
 @end
