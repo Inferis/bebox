@@ -50,7 +50,7 @@
         }
         
         UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-        [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+        [[UINavigationBar appearance] setTintColor:[UIColor colorWithHex:0x3c8cbb]];
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"titlebg.png"] resizableImageWithCapInsets:UIEdgeInsetsZero] forBarMetrics:UIBarMetricsDefault];
         self.window.rootViewController = navigationController;
 
