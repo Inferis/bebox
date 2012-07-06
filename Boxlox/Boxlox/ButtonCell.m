@@ -32,7 +32,9 @@
         [_button addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
         
         [self.contentView addSubview:_button];
-        self.backgroundView = nil;
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
+        backView.backgroundColor = [UIColor clearColor];
+        self.backgroundView = backView;
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -41,6 +43,11 @@
 - (void)buttonPressed
 {
     if (_action) _action();
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _button.frame = CGRectMake(-1.0f, -1.0f, self.bounds.size.width - 18.0f, 41.0f);
 }
 
 - (void)configureWithText:(NSString*)text action:(void(^)())action {
