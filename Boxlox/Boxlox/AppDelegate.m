@@ -52,6 +52,8 @@
         UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
         [[UINavigationBar appearance] setTintColor:[UIColor colorWithHex:0x3c8cbb]];
         [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"titlebg.png"] resizableImageWithCapInsets:UIEdgeInsetsZero] forBarMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 10)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back-hi.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 10)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
         self.window.rootViewController = navigationController;
 
         // Override point for customization after application launch.
