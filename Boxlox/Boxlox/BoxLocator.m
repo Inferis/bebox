@@ -100,8 +100,8 @@ NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionS
     _locatedBoxes = [parsedMarkers map:^id(id obj) {
         PostBox* box = [PostBox new];
         box.id = [NSString stringWithFormat:@"%@", [obj objectForKey:@"id"]];
-        box.addressNL = [NSArray arrayWithObjects:[obj objectForKey:@"address1_nl"], [obj objectForKey:@"address2_nl"], nil];
-        box.addressFR = [NSArray arrayWithObjects:[obj objectForKey:@"address1_fr"], [obj objectForKey:@"address2_fr"], nil];
+        box.addressNL = [self fixAddress:[NSArray arrayWithObjects:[obj objectForKey:@"address1_nl"], [obj objectForKey:@"address2_nl"], nil]];
+        box.addressFR = [self fixAddress:[NSArray arrayWithObjects:[obj objectForKey:@"address1_fr"], [obj objectForKey:@"address2_fr"], nil]];
         box.location = [[CLLocation alloc] initWithLatitude:[[obj objectForKey:@"lat"] doubleValue] longitude:[[obj objectForKey:@"lng"] doubleValue]];
         box.clearance = [obj objectForKey:@"week"];
         box.clearanceSaturday =[obj objectForKey:@"sat"];
@@ -111,6 +111,30 @@ NSString* const kBoxLocatorUserPositionStatusChanged = @"BoxLocatorUserPositionS
     [_locatedBoxes each:^(PostBox* box) {
         if (![_allBoxes objectForKey:box.id])
             [_allBoxes setObject:box forKey:box.id];
+    }];
+}
+
+- (NSArray*)fixAddress:(NSArray*)addresses {
+    return [addresses map:^id(NSString* address) {
+        uint length = [address length];
+        unichar buffer[length];
+        
+        [address getCharacters:buffer range:NSMakeRange(0, length)];
+        BOOL needsUpper = YES;
+        for (uint i=0; i<length; i++)
+        {
+            if (isalpha(buffer[i])) {
+                if (needsUpper)
+                    buffer[i] = toupper(buffer[i]);
+                else
+                    buffer[i] = tolower(buffer[i]);
+                needsUpper = NO;
+            }
+            else
+                needsUpper = YES;
+        }
+        
+        return [NSString stringWithCharacters:buffer length:length];
     }];
 }
 
