@@ -90,6 +90,7 @@
         case 0: {
             UITableViewCell* cell = [UITableViewCell tableViewAutoDequeueCell:self.tableView];
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.text = _postbox.addressNL[indexPath.row];
             return cell;
         }

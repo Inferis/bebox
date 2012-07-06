@@ -18,9 +18,11 @@
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+
         _button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _button.frame = CGRectMake(0.0f, -1.0f, self.bounds.size.width - 20.0f, 41.0f);
-        [_button setBackgroundImage:[[UIImage imageNamed:@"detail-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal];
+        _button.frame = CGRectMake(-1.0f, -1.0f, self.bounds.size.width - 18.0f, 41.0f);
+        [_button setBackgroundImage:[[UIImage imageNamed:@"detail-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)] forState:UIControlStateNormal];
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_button setTitleShadowColor:[UIColor colorWithHex:0x1e4f6b] forState:UIControlStateNormal];
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
