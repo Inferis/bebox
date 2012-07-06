@@ -56,7 +56,7 @@
     [self updateRightBarButtonItems];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
-    _first = YES;
+    _first = [BoxLox boxLocator].canLocateUser;
     _following = NO;
     _mapView.userTrackingMode = MKUserTrackingModeNone;
     
