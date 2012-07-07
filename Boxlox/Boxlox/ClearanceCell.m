@@ -24,7 +24,7 @@
 - (void)configure:(PostBox*)box asSaturday:(BOOL)saturday {
     int dayofweek = [[NSDate date] dayOfWeek];
     self.detailTextLabel.text = @"";
-    if ([box hasClearanceScheduledForToday]) {
+    if ((saturday == (dayofweek == 7)) && [box hasClearanceScheduledForToday]) {
         self.imageView.image = [UIImage imageNamed:@"postbox-open.png"];
     }
     else {
