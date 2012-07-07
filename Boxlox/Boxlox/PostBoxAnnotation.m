@@ -23,17 +23,19 @@
 }
 
 - (NSString *)title {
-    return [NSString stringWithFormat:@"%@\n%@", _postBox.addressNL[0], _postBox.addressNL[1]];
+    return [NSString stringWithFormat:@"%@, %@", _postBox.addressNL[0], _postBox.addressNL[1]];
 }
 
 - (NSString *)subtitle {
     int dayOfWeek = [[NSDate date] dayOfWeek];
-    if (dayOfWeek == 1)
-        return @"No clearance today";
+    if (dayOfWeek != 1) {
+        if ([_postBox hasClearanceScheduledForToday])
+            return [NSString stringWithFormat:@"Last clearance at %@", [_postBox todaysClearance]];
+        if (!IsEmpty([_postBox todaysClearance]))
+            return [NSString stringWithFormat:@"Last cleared at %@", [_postBox todaysClearance]];
+    }
     
-    if ([_postBox hasClearanceScheduledForToday])
-        return [NSString stringWithFormat:@"Last clearance at %@", [_postBox todaysClearance]];
-    return [NSString stringWithFormat:@"Last cleared at %@", [_postBox todaysClearance]];
+    return @"No clearance today";
 }
 
 @end

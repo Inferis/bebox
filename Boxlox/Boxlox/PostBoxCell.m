@@ -43,14 +43,14 @@
 
 - (void)configure:(PostBox*)box {
     self.textLabel.text = [NSString stringWithFormat:@"%@\n%@", box.addressNL[0], box.addressNL[1]];
+    self.detailTextLabel.text = @"No clearance today";
 
     int dayOfWeek = [[NSDate date] dayOfWeek];
-    if (dayOfWeek == 1)
-        self.detailTextLabel.text = @"No clearance today";
-    else {
+    if (dayOfWeek != 1) {
         if ([box hasClearanceScheduledForToday])
             self.detailTextLabel.text = [NSString stringWithFormat:@"Last clearance: %@", [box todaysClearance]];
-        self.detailTextLabel.text = [NSString stringWithFormat:@"Last cleared: %@", [box todaysClearance]];
+        else if (!IsEmpty([box todaysClearance]))
+            self.detailTextLabel.text = [NSString stringWithFormat:@"Last cleared: %@", [box todaysClearance]];
     }
     
     self.imageView.image = [UIImage imageNamed:[box hasClearanceScheduledForToday] ? @"postbox-open-noshadow.png" : @"postbox-closed-noshadow.png"];
