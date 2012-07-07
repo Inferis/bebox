@@ -54,6 +54,11 @@
 		E280645F15A78AEC008549C0 /* postbox-open-noshadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E280645B15A78AEC008549C0 /* postbox-open-noshadow@2x.png */; };
 		E280646315A7944C008549C0 /* postbox-hilite-noshadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E280646115A7944C008549C0 /* postbox-hilite-noshadow.png */; };
 		E280646415A7944C008549C0 /* postbox-hilite-noshadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E280646215A7944C008549C0 /* postbox-hilite-noshadow@2x.png */; };
+		E280646B15A82A0E008549C0 /* UIButton+CustomDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = E280646A15A82A0E008549C0 /* UIButton+CustomDisclosure.m */; };
+		E280647115A82AA3008549C0 /* disclosure-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E280646D15A82AA3008549C0 /* disclosure-hi@2x.png */; };
+		E280647215A82AA3008549C0 /* disclosure-hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E280646E15A82AA3008549C0 /* disclosure-hi.png */; };
+		E280647315A82AA3008549C0 /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = E280646F15A82AA3008549C0 /* disclosure.png */; };
+		E280647415A82AA3008549C0 /* disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E280647015A82AA3008549C0 /* disclosure@2x.png */; };
 		E286C3E3159DFEC900B3B429 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */; };
 		E286C3E4159DFEC900B3B429 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E2159DFEC900B3B429 /* WrapController.m */; };
 		E286C3E8159DFEFC00B3B429 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E286C3E6159DFEFC00B3B429 /* MapViewController.m */; };
@@ -173,6 +178,12 @@
 		E280645B15A78AEC008549C0 /* postbox-open-noshadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-open-noshadow@2x.png"; sourceTree = "<group>"; };
 		E280646115A7944C008549C0 /* postbox-hilite-noshadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-hilite-noshadow.png"; sourceTree = "<group>"; };
 		E280646215A7944C008549C0 /* postbox-hilite-noshadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postbox-hilite-noshadow@2x.png"; sourceTree = "<group>"; };
+		E280646915A82A0E008549C0 /* UIButton+CustomDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CustomDisclosure.h"; sourceTree = "<group>"; };
+		E280646A15A82A0E008549C0 /* UIButton+CustomDisclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CustomDisclosure.m"; sourceTree = "<group>"; };
+		E280646D15A82AA3008549C0 /* disclosure-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure-hi@2x.png"; sourceTree = "<group>"; };
+		E280646E15A82AA3008549C0 /* disclosure-hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure-hi.png"; sourceTree = "<group>"; };
+		E280646F15A82AA3008549C0 /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
+		E280647015A82AA3008549C0 /* disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure@2x.png"; sourceTree = "<group>"; };
 		E286C3DF159DFEC900B3B429 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
 		E286C3E0159DFEC900B3B429 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
 		E286C3E1159DFEC900B3B429 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
@@ -299,6 +310,10 @@
 		E21EADBA15A0DD570011158E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E280646D15A82AA3008549C0 /* disclosure-hi@2x.png */,
+				E280646E15A82AA3008549C0 /* disclosure-hi.png */,
+				E280646F15A82AA3008549C0 /* disclosure.png */,
+				E280647015A82AA3008549C0 /* disclosure@2x.png */,
 				E280646115A7944C008549C0 /* postbox-hilite-noshadow.png */,
 				E280646215A7944C008549C0 /* postbox-hilite-noshadow@2x.png */,
 				E280645815A78AEC008549C0 /* postbox-closed-noshadow.png */,
@@ -397,6 +412,8 @@
 				E21EADC715A0F03F0011158E /* NSDate+Formatting.m */,
 				E286C405159E4D6C00B3B429 /* UIColor+Hex.h */,
 				E286C406159E4D6C00B3B429 /* UIColor+Hex.m */,
+				E280646915A82A0E008549C0 /* UIButton+CustomDisclosure.h */,
+				E280646A15A82A0E008549C0 /* UIButton+CustomDisclosure.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -684,6 +701,10 @@
 				E280645F15A78AEC008549C0 /* postbox-open-noshadow@2x.png in Resources */,
 				E280646315A7944C008549C0 /* postbox-hilite-noshadow.png in Resources */,
 				E280646415A7944C008549C0 /* postbox-hilite-noshadow@2x.png in Resources */,
+				E280647115A82AA3008549C0 /* disclosure-hi@2x.png in Resources */,
+				E280647215A82AA3008549C0 /* disclosure-hi.png in Resources */,
+				E280647315A82AA3008549C0 /* disclosure.png in Resources */,
+				E280647415A82AA3008549C0 /* disclosure@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +761,7 @@
 				E297987215A5BDF200E72EBE /* DetailViewController.m in Sources */,
 				E239FAF115A6307500C4C148 /* ClearanceCell.m in Sources */,
 				E239FAFB15A635CB00C4C148 /* ButtonCell.m in Sources */,
+				E280646B15A82A0E008549C0 /* UIButton+CustomDisclosure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "PostBox.h"
 #import "PostBoxAnnotation.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIButton+CustomDisclosure.h"
 
 @implementation PostBoxAnnotationView
 
@@ -19,13 +20,9 @@
         UIImage* image = [UIImage imageNamed:[annotation.postBox hasClearanceScheduledForToday] ? @"postbox-open.png" : @"postbox-closed.png"];
         self.layer.contents = (id)[image CGImage];
         self.frame = (CGRect) { 0, 0, 32, 24 };
+        self.rightCalloutAccessoryView = [UIButton customDisclosureButton];
     }
     return self;
-}
-
-- (void)layoutSubviews {
-    
-    [super layoutSubviews];
 }
 
 - (void)setAnnotation:(PostBoxAnnotation*)annotation {

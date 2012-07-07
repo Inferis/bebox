@@ -314,9 +314,6 @@
     PostBoxAnnotationView* pin = [[PostBoxAnnotationView alloc] initWithAnnotation:annotation];
     pin.canShowCallout = YES;
     
-    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    pin.rightCalloutAccessoryView = rightButton;
-    
     return pin;
 }
 

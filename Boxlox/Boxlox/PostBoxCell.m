@@ -9,6 +9,7 @@
 #import "PostBoxCell.h"
 #import "UIColor+Hex.h"
 #import "NSDate+Extensions.h"
+#import "UIButton+CustomDisclosure.h"
 
 @implementation PostBoxCell {
     UILabel* _distanceLabel;
@@ -37,6 +38,8 @@
         [[self contentView] addSubview:_distanceLabel];
 
         self.imageView.highlightedImage = [UIImage imageNamed:@"postbox-hilite-noshadow.png"];
+        
+        self.accessoryView = [UIButton customDisclosureButton];
     }
     return self;
 }
