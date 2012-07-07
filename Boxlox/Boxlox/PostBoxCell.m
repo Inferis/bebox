@@ -29,13 +29,14 @@
         
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.font = [UIFont systemFontOfSize:12];
-        _distanceLabel.textColor = [UIColor colorWithHex:0xdddddd];
-        _distanceLabel.backgroundColor = [UIColor colorWithHex:0x888888];
+        _distanceLabel.textColor = [UIColor colorWithHex:0x888888];
+        _distanceLabel.backgroundColor = [UIColor clearColor];
         _distanceLabel.layer.cornerRadius = 3;
         _distanceLabel.textAlignment = UITextAlignmentCenter;
+        _distanceLabel.opaque = NO;
         [[self contentView] addSubview:_distanceLabel];
 
-        self.imageView.highlightedImage = [UIImage imageNamed:@"postbox-hilite.png"];
+        self.imageView.highlightedImage = [UIImage imageNamed:@"postbox-hilite-noshadow.png"];
     }
     return self;
 }
@@ -52,7 +53,7 @@
         self.detailTextLabel.text = [NSString stringWithFormat:@"Last cleared: %@", [box todaysClearance]];
     }
     
-    self.imageView.image = [UIImage imageNamed:[box hasClearanceScheduledForToday] ? @"postbox-open.png" : @"postbox-closed.png"];
+    self.imageView.image = [UIImage imageNamed:[box hasClearanceScheduledForToday] ? @"postbox-open-noshadow.png" : @"postbox-closed-noshadow.png"];
     
     if ([BoxLox boxLocator].canLocateUser) {
         CLLocationDistance distance = [box.location distanceFromLocation:[BoxLox boxLocator].userLocation];
@@ -71,8 +72,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    _distanceLabel.frame = (CGRect) { CGRectGetMaxX(self.contentView.bounds) - _distanceLabelSize.width - 10, self.detailTextLabel.frame.origin.y, _distanceLabelSize };
-    _distanceLabel.frame = CGRectInset(_distanceLabel.frame, -2, -1);
+    _distanceLabel.frame = (CGRect) { CGRectGetMidX(self.imageView.frame)-_distanceLabelSize.width/2, self.detailTextLabel.frame.origin.y - 5, _distanceLabelSize };
+    
+    self.imageView.frame = CGRectOffset(self.imageView.frame, 0, -8);
 }
 
 + (Class)layerClass {

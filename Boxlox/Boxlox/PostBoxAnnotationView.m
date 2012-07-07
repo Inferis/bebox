@@ -18,7 +18,7 @@
     if (self) {
         UIImage* image = [UIImage imageNamed:[annotation.postBox hasClearanceScheduledForToday] ? @"postbox-open.png" : @"postbox-closed.png"];
         self.layer.contents = (id)[image CGImage];
-        self.frame = (CGRect) { 0, 0, 24, 24 };
+        self.frame = (CGRect) { 0, 0, 32, 24 };
     }
     return self;
 }
